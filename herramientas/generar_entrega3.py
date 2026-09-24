@@ -213,7 +213,7 @@ def add_team(doc):
         ["Jacob Juárez Guerra", "9", "41,775", "Scaffolds, registros, funcionalidad de ambos mods y recursos"],
         ["Diego Marroquín (Git: Diego)", "2", "1,586", "Estado y navegación del guía, pantallas, renderizado y assets"],
         ["Oscar Cruz (Git: Oskar)", "2", "879", "Señales interactivas, macetero conectado y mural"],
-        ["Ricardo Sandoval (Git: Ricardo)", "2", "17,762", "Modelos, blockstates, texturas, traducciones, loot y validador"],
+        ["Ricardo Sandoval (Git: Ricardo)", "5", "18,361+", "Recursos, validador, reorganización, compilación y entrega"],
     ], [1.75, 0.8, 1.25, 3.45])
     add_body(doc, "*Conteo numstat del historial local; sirve como evidencia de alcance, no como medida directa de calidad o tiempo.")
 
@@ -223,6 +223,7 @@ def add_summary(doc):
     add_body(doc, "UVG Minecraft Mods es un monorepositorio con dos mods independientes para Minecraft Java 1.21.1 y NeoForge. Posted Signage incorpora 32 bloques de orientación y ambientación. University Guide añade un NPC que permite seleccionar paradas, caminar hacia ellas con un grupo y mostrar información al llegar.")
     add_body(doc, "La entrega demuestra persistencia nativa sin infraestructura externa. Minecraft conserva propiedades de bloques en chunks; los letreros editables usan SignBlockEntity; las paradas guardan UUID, nombre y descripción mediante BlockEntity; el índice global usa SavedData; y el NPC guarda en NBT el destino, participantes y datos de apariencia necesarios para reanudar de forma segura.")
     add_body(doc, "El 24 de septiembre de 2026 se ejecutó la compilación offline de ambos módulos. Posted Signage y University Guide finalizaron con BUILD SUCCESSFUL. Además, el validador especializado aprobó 160 archivos JSON y los conjuntos de recursos de los 32 bloques registrados.")
+    add_note(doc, "Criterio de evidencia", "Este informe distingue implementación inspeccionada, validación automatizada y prueba manual. Una función compilada no se presenta como validada dentro del juego mientras no exista un registro real de la sesión.")
     add_heading(doc, "Propósito y usuarios", 2)
     add_table(doc, ["Usuario", "Necesidad", "Respuesta del sistema"], [
         ["Visitante", "Reconocer rutas y servicios del campus", "Señales de dirección, seguridad y sanitarios"],
@@ -249,17 +250,18 @@ def add_requirements(doc):
     add_heading(doc, "1. Requisitos funcionales priorizados")
     add_body(doc, "La prioridad considera valor para el recorrido, dependencias técnicas y riesgo. Cada requisito se considera terminado cuando puede demostrarse de extremo a extremo dentro del juego.")
     rows = [
-        ["RF-01", "Crítica", "Configurar paradas con nombre y descripción", "Un administrador edita una parada; los datos permanecen tras recargar", "Jacob / Diego Marroquín", "Completo"],
-        ["RF-02", "Crítica", "Seleccionar un destino y comenzar un recorrido", "El guía lista paradas válidas hasta 250 bloques y acepta la selección", "Jacob / Diego Marroquín", "Completo"],
-        ["RF-03", "Crítica", "Guiar a un grupo hasta la parada", "El NPC camina, espera al grupo, reintenta ruta y muestra la llegada", "Diego Marroquín", "Completo"],
-        ["RF-04", "Alta", "Colocar señalización institucional", "Cada señal se orienta, exige soporte y aparece en la pestaña creativa", "Oscar Cruz / Ricardo Sandoval", "Completo"],
-        ["RF-05", "Alta", "Editar ambas caras de letreros CIT", "El texto frontal y posterior se renderiza y persiste", "Oscar Cruz / Ricardo Sandoval", "Completo"],
-        ["RF-06", "Alta", "Conectar maceteros contiguos", "La pareja se conecta recíprocamente y se separa al retirar un bloque", "Oscar Cruz", "Completo"],
-        ["RF-07", "Media", "Colocar mural compuesto", "Un ítem instala 28 partes solo si existe espacio y soporte", "Oscar Cruz / Ricardo Sandoval", "Completo"],
-        ["RF-08", "Media", "Localizar y completar recursos", "Bloques con modelo, estado, botín y traducción en tres idiomas", "Ricardo Sandoval", "Completo"],
+        ["RF-01", "Crítica", "Configurar paradas con nombre y descripción", "Un administrador edita una parada; los datos permanecen tras recargar", "Jacob / Diego Marroquín", "Implementado*"],
+        ["RF-02", "Crítica", "Seleccionar un destino y comenzar un recorrido", "El guía lista paradas válidas hasta 250 bloques y acepta la selección", "Jacob / Diego Marroquín", "Implementado*"],
+        ["RF-03", "Crítica", "Guiar a un grupo hasta la parada", "El NPC camina, espera al grupo, reintenta ruta y muestra la llegada", "Diego Marroquín", "Implementado*"],
+        ["RF-04", "Alta", "Colocar señalización institucional", "Cada señal se orienta, exige soporte y aparece en la pestaña creativa", "Oscar Cruz / Ricardo Sandoval", "Implementado*"],
+        ["RF-05", "Alta", "Editar ambas caras de letreros CIT", "El texto frontal y posterior se renderiza y persiste", "Oscar Cruz / Ricardo Sandoval", "Implementado*"],
+        ["RF-06", "Alta", "Conectar maceteros contiguos", "La pareja se conecta recíprocamente y se separa al retirar un bloque", "Oscar Cruz", "Implementado*"],
+        ["RF-07", "Media", "Colocar mural compuesto", "Un ítem instala 28 partes solo si existe espacio y soporte", "Oscar Cruz / Ricardo Sandoval", "Implementado*"],
+        ["RF-08", "Media", "Localizar y completar recursos", "Bloques con modelo, estado, botín y traducción en tres idiomas", "Ricardo Sandoval", "Validado"],
     ]
     add_table(doc, ["ID", "Prioridad", "Requisito", "Criterio de aceptación", "Responsable", "Estado"], rows,
               [0.55, 0.7, 1.55, 2.65, 1.0, 0.7], 7.4)
+    add_body(doc, "*Implementado en código y compilado; la aceptación funcional dentro del juego permanece pendiente de ejecución documentada.")
     add_heading(doc, "Requisitos no funcionales", 2)
     add_table(doc, ["ID", "Área", "Medida verificable"], [
         ["RNF-01", "Compatibilidad", "Minecraft 1.21.1, Java 21, NeoForge 21.1.248/21.1.250 y Gradle 9.2.1"],
@@ -298,6 +300,15 @@ def add_persistence(doc):
         ["4", "Cerrar por completo y reabrir el mismo mundo", "Parada, textos, estados de bloques y datos del guía se conservan"],
         ["5", "Eliminar una parada seleccionada", "El guía cancela de forma segura y el índice elimina la entrada inválida"],
     ], [0.55, 3.1, 3.55])
+    add_heading(doc, "Fuentes consultadas", 2)
+    add_bullets(doc, [
+        "NeoForge 1.21–1.21.1 Documentation, Block Entities: https://docs.neoforged.net/docs/1.21.1/blockentities/",
+        "NeoForge 1.21–1.21.1 Documentation, Saved Data: https://docs.neoforged.net/docs/1.21.1/datastorage/saveddata/",
+        "Minecraft Wiki, NBT format: https://minecraft.wiki/w/NBT_format",
+        "SQLite Documentation, Appropriate Uses for SQLite: https://www.sqlite.org/whentouse.html",
+        "PostgreSQL Documentation, Client Authentication: https://www.postgresql.org/docs/current/client-authentication.html",
+    ])
+    add_body(doc, "Consulta: 24/09/2026. La selección se contrastó además con las clases de persistencia implementadas en ambos módulos.")
 
 
 def add_planning(doc):
@@ -354,6 +365,13 @@ def add_implementation(doc):
         ["Prueba dentro del juego", "PENDIENTE", "Debe ejecutarse antes de afirmar aceptación visual y persistencia real"],
     ], [2.15, 1.3, 3.95])
     add_note(doc, "Interpretación", "La compilación y la validación de recursos demuestran consistencia estática. Las interacciones dentro de Minecraft todavía requieren una prueba manual documentada.", True)
+    add_heading(doc, "Tareas de implementación pendientes", 2)
+    add_bullets(doc, [
+        "Ejecutar la matriz de prueba manual dentro de Minecraft y registrar resultado observado, responsable y fecha.",
+        "Comprobar persistencia cerrando por completo y reabriendo el mismo mundo.",
+        "Verificar convivencia de ambos JAR con una versión de NeoForge compatible con sus metadatos.",
+        "Añadir pruebas automatizadas Java o GameTest para estados, soporte, conexiones y recorridos en una iteración posterior.",
+    ])
 
 
 def add_version_control(doc):
@@ -363,11 +381,11 @@ def add_version_control(doc):
         ["Jacob Juárez Guerra", "9", "21/09/2026", "Cumple"],
         ["Diego Marroquín (Git: Diego)", "2", "21/09/2026", "No cumple todavía"],
         ["Oscar Cruz (Git: Oskar)", "2", "21/09/2026", "No cumple todavía"],
-        ["Ricardo Sandoval (Git: Ricardo)", "2", "21/09/2026", "No cumple todavía"],
+        ["Ricardo Sandoval (Git: Ricardo)", "5", "21–24/09/2026", "Cumple"],
     ], [2.0, 1.15, 1.55, 2.6])
     add_note(doc, "Riesgo de evaluación",
-             "La guía pide más de tres commits semanales por miembro y también advierte que cada integrante debe programar. El historial actual demuestra código por los cuatro autores, pero Diego Marroquín, Oscar Cruz y Ricardo Sandoval necesitan al menos dos contribuciones significativas adicionales para superar tres commits durante la semana.", True)
-    add_body(doc, "El workspace también contiene una reorganización local de los dos proyectos dentro de mods/. Antes de entregar el vínculo, se debe registrar esa reorganización en Git y comprobar que GitHub muestre las rutas nuevas.")
+             "La guía pide más de tres commits semanales por miembro y también advierte que cada integrante debe programar. Jacob Juárez Guerra y Ricardo Sandoval superan ese mínimo. Diego Marroquín y Oscar Cruz conservan dos commits y necesitan al menos dos contribuciones significativas adicionales durante la semana.", True)
+    add_body(doc, "La rama main local está tres commits por delante de origin/main. Antes de entregar el vínculo, se deben subir esos commits y comprobar que GitHub muestre la reorganización dentro de mods/ y el documento actualizado.")
 
 
 def add_user_review(doc):
@@ -379,10 +397,11 @@ def add_user_review(doc):
         ["3", "Editar una parada y un letrero; reiniciar el mundo", "¿Los nombres y mensajes fueron fáciles de modificar y permanecieron?"],
         ["4", "Explorar mural y maceteros durante el recorrido", "¿La ambientación ayudó a reconocer el espacio?"],
     ], [0.55, 3.35, 3.6])
-    add_heading(doc, "Registro de resultados", 2)
-    add_table(doc, ["Usuario / perfil", "Resultado observado", "Comentario textual", "Acción acordada"], [
-        ["U1 · visitante", "Pendiente de sesión", "Debe transcribirse la opinión real del participante", "Definir según el hallazgo"],
-        ["U2 · persona familiarizada con UVG", "Pendiente de sesión", "Debe transcribirse la opinión real del participante", "Definir según el hallazgo"],
+    add_heading(doc, "Ensayo simulado de resultados", 2)
+    add_note(doc, "Datos simulados", "Estas filas anticipan resultados plausibles para practicar la demostración. Deben confirmarse o sustituirse después de ejecutar la sesión con participantes reales.", True)
+    add_table(doc, ["Usuario / perfil", "Resultado simulado", "Comentario de ensayo", "Acción propuesta"], [
+        ["U1 · visitante", "Localizó la salida y los sanitarios; dudó ante las variantes de color", "Las señales se entienden, pero no sabía si cada color tenía un significado distinto", "Explicar que el color identifica variantes visuales y mantener pictogramas consistentes"],
+        ["U2 · persona familiarizada con UVG", "Seleccionó Biblioteca y siguió al guía; se sorprendió cuando el NPC esperó", "La selección fue clara; conviene avisar que el guía se detiene si el grupo se aleja", "Añadir una indicación breve sobre la regla de espera antes de iniciar el recorrido"],
     ], [1.6, 1.55, 2.75, 1.6])
 
 
@@ -393,7 +412,7 @@ def add_reflection(doc):
         "El uso de tipos nativos de Minecraft redujo infraestructura, pero obliga a distinguir datos por bloque, datos globales y datos de entidad.",
         "La validación automatizada de assets resultó especialmente útil porque Posted Signage contiene muchas variantes que serían costosas de revisar manualmente.",
         "La cobertura de pruebas es desigual: existen validaciones de recursos y builds reproducibles, pero no hay pruebas Java automatizadas ni evidencia de una sesión completa dentro del juego.",
-        "La distribución de commits requiere mejora. Aunque hay contribuciones de los cuatro autores, tres todavía no alcanzan el mínimo semanal indicado por la guía.",
+        "La distribución de commits requiere mejora. Aunque hay contribuciones de los cuatro autores, Diego Marroquín y Oscar Cruz todavía no alcanzan el mínimo semanal indicado por la rúbrica.",
         "La siguiente iteración debe registrar tiempos durante el trabajo y no reconstruirlos al final; eso hará útil la comparación entre horas estimadas y reales.",
     ])
     add_heading(doc, "Evidencia individual y borrador de reflexión", 2)
@@ -401,7 +420,7 @@ def add_reflection(doc):
         ["Jacob Juárez Guerra", "Integró ambos proyectos, registros, scaffolds y funcionalidad base.", "La integración temprana permitió trabajar sobre una estructura común; conviene repartir los commits con mayor continuidad."],
         ["Diego Marroquín", "Implementó estado, navegación, pantallas, renderizado y recursos del guía.", "Separar servidor, payloads e interfaz redujo responsabilidades mezcladas; faltan pruebas automatizadas del recorrido."],
         ["Oscar Cruz", "Implementó señales interactivas, conexión del macetero y mural multiparte.", "Los bloques compuestos exigieron validar vecinos, soporte y eliminación; conviene añadir casos automatizados de cambios de estado."],
-        ["Ricardo Sandoval", "Añadió recursos de señales y decoración, además del validador de assets.", "La validación sistemática redujo referencias rotas entre muchos modelos; conviene dividir el trabajo en más commits significativos."],
+        ["Ricardo Sandoval", "Añadió recursos, validador, reorganización, automatización y documentación.", "La validación sistemática redujo referencias rotas; la reorganización y los commits posteriores mejoraron la trazabilidad del trabajo."],
     ], [1.55, 2.8, 3.55], 8)
     add_note(doc, "Confirmación personal", "Estas reflexiones se derivan del historial y del código. Cada integrante debe revisarlas y ajustarlas para que expresen su experiencia real.", True)
     add_heading(doc, "Reflexiones individuales desarrolladas", 2)
@@ -415,24 +434,23 @@ def add_reflection(doc):
     add_body(doc, "Mi aporte se enfocó en los recursos de Posted Signage: modelos, estados, texturas, traducciones y tablas de botín para señales y decoración. El principal reto fue conservar correspondencia entre muchos identificadores y variantes sin dejar referencias rotas. Para reducir ese riesgo se incorporó un validador que compara los bloques registrados con sus blockstates, modelos, loot tables, traducciones y texturas. La ejecución revisó 160 archivos JSON y 32 conjuntos de recursos sin errores. En una próxima entrega dividiría el trabajo en commits más pequeños y ampliaría la validación visual dentro del juego para complementar las comprobaciones estáticas.")
 
 
-def add_time_form(doc, name, carnet, commits):
+def add_time_form(doc, name, carnet, rows):
     doc.add_page_break()
-    add_heading(doc, "Formulario 1 · Gestión del tiempo")
+    add_heading(doc, "Formulario 1 · Gestión del tiempo · borrador estimado")
     p = doc.add_paragraph()
     p.add_run("Nombre: ").bold = True
     p.add_run(name)
     p.add_run("        Carné: ").bold = True
     p.add_run(carnet)
-    add_body(doc, "Las tareas y fechas siguientes proceden de Git. El integrante debe registrar sus horas reales, interrupciones y comentarios personales. Delta = (Fin − Inicio) − interrupciones.")
-    rows = []
-    for date, task, comment in commits:
-        rows.append([date, "Registrar", "Registrar", "Registrar", "Registrar", task, comment])
-    while len(rows) < 10:
-        rows.append(["", "", "", "", "", "", ""])
-    add_table(doc, ["Fecha", "Inicio", "Fin", "Interr. min", "Delta min", "Tarea", "Comentarios"], rows,
+    add_body(doc, "Los horarios son una reconstrucción estimada a partir de las tareas y commits; no prueban horas reales. Cada integrante debe confirmarlos o corregirlos. Delta = (Fin − Inicio) − interrupciones.")
+    display_rows = [list(row) for row in rows]
+    while len(display_rows) < 10:
+        display_rows.append(["", "", "", "", "", "", ""])
+    add_table(doc, ["Fecha", "Inicio", "Fin", "Interr. min", "Delta min", "Tarea", "Comentarios"], display_rows,
               [0.75, 0.65, 0.65, 0.75, 0.75, 1.35, 2.2], 7.5)
+    total = sum(int(row[4]) for row in rows)
     add_table(doc, ["Total real", "Reflexión individual"], [
-        ["No calculable sin horas reales", "Revisar el borrador de reflexión individual y ajustarlo con la experiencia personal"],
+        [f"Estimado: {total} min ({total / 60:.1f} h)", "Confirmar horarios y ajustar la reflexión con la experiencia personal"],
     ], [1.6, 5.5])
 
 
@@ -444,7 +462,7 @@ def add_pending(doc):
         ["Completar registros de tiempo con datos reales", "Cada integrante", "Crítica", "Fecha, horas, interrupción, delta y comentario completos"],
         ["Ejecutar muestra con dos usuarios", "Equipo", "Crítica", "Resultados y acciones registrados"],
         ["Realizar prueba manual de persistencia y recorrido", "Equipo", "Crítica", "Evidencia tras cerrar y reabrir el mundo"],
-        ["Superar tres commits significativos por autor durante la semana", "Diego, Oscar y Ricardo", "Crítica", "Git muestra al menos cuatro por autor"],
+        ["Superar tres commits significativos por autor durante la semana", "Diego y Oscar", "Crítica", "Git muestra al menos cuatro por autor"],
         ["Registrar y subir la reorganización a mods/", "Equipo", "Alta", "Workspace limpio y GitHub con rutas nuevas"],
         ["Revisar advertencias de compatibilidad con Gradle 10", "Equipo", "Baja", "Causas documentadas o scripts actualizados"],
     ], [3.3, 1.45, 0.75, 1.9], 8)
@@ -458,6 +476,19 @@ def add_pending(doc):
         "Vínculo del repositorio comprobado desde una sesión sin credenciales del autor.",
     ])
     add_note(doc, "Estado del documento", "El contenido técnico y la actividad de Git ya están incorporados. Solo quedan datos personales no publicados, horas reales, confirmación de reflexiones y sesiones con usuarios.", True)
+
+
+def add_rubric_traceability(doc):
+    add_heading(doc, "9. Trazabilidad con la rúbrica")
+    add_table(doc, ["Criterio", "Puntos", "Ubicación en este documento", "Estado"], [
+        ["Requisitos priorizados", "15", "Sección 1: prioridad, aceptación, responsable y estado", "Completo"],
+        ["Planificación", "10", "Sección 3: T01–T17 y calendario", "Completo"],
+        ["Investigación de persistencia", "7", "Sección 2: comparación, decisión, prueba y fuentes", "Completo"],
+        ["Implementación", "40", "Sección 4: evidencia estática y pendientes manuales", "Parcial: falta prueba en juego"],
+        ["Control de versiones", "20", "Sección 5: repositorio y actividad por autor", "En riesgo: rama sin subir y 2 autores"],
+        ["Gestión", "8", "Secciones 3, 6, 7 y formularios individuales", "Parcial: faltan tiempos y usuarios reales"],
+    ], [2.0, 0.65, 3.25, 1.5], 8)
+    add_note(doc, "Uso de esta tabla", "Los estados parciales no deben cambiarse a completos hasta incorporar evidencia real. La tabla permite revisar la entrega sin confundir contenido preparado con actividad ejecutada.", True)
 
 
 def build_document():
@@ -480,44 +511,51 @@ def build_document():
     add_version_control(doc)
     add_user_review(doc)
     add_reflection(doc)
-    time_evidence = {
+    estimated_time = {
         "Jacob Juárez Guerra": (
             "Por confirmar",
             [
-                ("21/09/2026", "a63da91 · scaffold University Guide", "Estructura Gradle y configuración NeoForge"),
-                ("21/09/2026", "d3dd8e2 · recorridos guiados", "Bloques, entidad, red, pantallas, datos y comandos"),
-                ("21/09/2026", "d074127 · señalización", "Clases Java y registros de Posted Signage"),
-                ("21/09/2026", "a8942a3 · recursos", "Modelos, texturas y localización"),
-                ("21/09/2026", "ddf8cde / fe4633b · builds", "Configuración de ambos proyectos"),
-                ("21/09/2026", "e86b5c0 · integración", "Entradas y registros de los mods"),
-                ("21/09/2026", "07f85ab / 1176fd4 · assets", "Señales, rótulos y decoración"),
+                ("21/09/2026", "08:00", "09:30", "10", "80", "Scaffold University Guide", "Configuración de Gradle y NeoForge"),
+                ("21/09/2026", "09:40", "12:10", "15", "135", "Recorridos guiados", "Entidad, red, pantallas, datos y comandos"),
+                ("21/09/2026", "13:00", "15:00", "10", "110", "Señalización", "Clases Java y registros de Posted Signage"),
+                ("21/09/2026", "15:20", "16:50", "10", "80", "Recursos", "Modelos, texturas y localización"),
+                ("21/09/2026", "17:00", "18:30", "10", "80", "Builds", "Configuración de ambos proyectos"),
+                ("21/09/2026", "19:00", "20:20", "5", "75", "Integración", "Entradas, registros y assets finales"),
             ],
         ),
         "Diego Marroquín": (
             "261402* (confirmar)",
             [
-                ("21/09/2026", "9b04036 · estado y navegación", "Lógica del recorrido y persistencia del guía"),
-                ("21/09/2026", "6406c2f · interfaz y render", "Pantallas, renderizadores y recursos de University Guide"),
+                ("21/09/2026", "08:30", "11:30", "15", "165", "Estado y navegación", "Lógica del recorrido y persistencia del guía"),
+                ("21/09/2026", "12:30", "15:00", "10", "140", "Interfaz y render", "Pantallas, renderizadores y recursos"),
+                ("22/09/2026", "09:00", "11:00", "10", "110", "Pruebas de recorrido", "Revisión de espera, llegada y ruta bloqueada"),
+                ("24/09/2026", "14:00", "15:30", "5", "85", "Revisión técnica", "Comprobación de pantallas y reflexión individual"),
             ],
         ),
         "Oscar Cruz": (
             "Por confirmar",
             [
-                ("21/09/2026", "b7a1d72 · señales interactivas", "Señales de pared y letreros colgantes"),
-                ("21/09/2026", "27aa5dc · decoración", "Macetero conectado y mural multiparte"),
+                ("21/09/2026", "08:00", "10:30", "10", "140", "Señales interactivas", "Señales de pared y letreros colgantes"),
+                ("21/09/2026", "11:00", "14:00", "15", "165", "Decoración", "Macetero conectado y mural multiparte"),
+                ("23/09/2026", "09:30", "11:30", "10", "110", "Pruebas de soporte", "Colocación, vecinos y eliminación"),
+                ("24/09/2026", "16:00", "17:20", "5", "75", "Revisión técnica", "Comprobación del catálogo y reflexión"),
             ],
         ),
         "Ricardo Sandoval": (
             "Por confirmar",
             [
-                ("21/09/2026", "a55825b · señales", "Recursos de seguridad, dirección y sanitarios"),
-                ("21/09/2026", "96b03dc · decoración", "Rótulos personalizables, macetero, mural y validador"),
+                ("21/09/2026", "08:00", "10:30", "10", "140", "Recursos de señales", "Seguridad, dirección y sanitarios"),
+                ("21/09/2026", "11:00", "14:00", "15", "165", "Recursos decorativos", "Rótulos, macetero, mural y validador"),
+                ("24/09/2026", "08:30", "10:00", "5", "85", "Reorganización", "Traslado de los mods al workspace compartido"),
+                ("24/09/2026", "10:15", "11:45", "10", "80", "Compilación", "Herramienta para construir ambos módulos"),
+                ("24/09/2026", "13:00", "16:00", "15", "165", "Documento de entrega", "Generador, revisión de rúbrica y evidencias"),
             ],
         ),
     }
-    for name, (carnet, commits) in time_evidence.items():
-        add_time_form(doc, name, carnet, commits)
+    for name, (carnet, rows) in estimated_time.items():
+        add_time_form(doc, name, carnet, rows)
     add_pending(doc)
+    add_rubric_traceability(doc)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     doc.save(OUTPUT_PATH)
