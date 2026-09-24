@@ -60,7 +60,10 @@ public final class GuideCommands {
         guide.setCustomName(Component.literal(displayName));
         guide.setCustomNameVisible(true);
         guide.setSkinAccount(skin);
-        level.addFreshEntity(guide);
+        if (!level.addFreshEntity(guide)) {
+            context.getSource().sendFailure(Component.translatable("command.universityguide.spawn_failed"));
+            return 0;
+        }
         context.getSource().sendSuccess(
                 () -> Component.translatable("command.universityguide.spawned", displayName, guide.getUUID().toString()), true);
         return 1;
