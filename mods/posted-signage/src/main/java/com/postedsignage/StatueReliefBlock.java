@@ -61,12 +61,19 @@ public final class StatueReliefBlock extends HorizontalDirectionalBlock {
 
     private boolean canPlaceStructure(BlockPlaceContext context, BlockPos anchor, Direction facing) {
         Level level = context.getLevel();
+        CollisionContext collisionContext = context.getPlayer() == null
+                ? CollisionContext.empty()
+                : CollisionContext.of(context.getPlayer());
         for (StatuePart part : StatuePart.values()) {
             BlockPos partPos = partPosition(anchor, facing, part);
             if (!level.getWorldBorder().isWithinBounds(partPos)) {
                 return false;
             }
             if (!partPos.equals(anchor) && !level.getBlockState(partPos).canBeReplaced()) {
+                return false;
+            }
+            BlockState partState = defaultBlockState().setValue(FACING, facing).setValue(PART, part);
+            if (!level.isUnobstructed(partState, partPos, collisionContext)) {
                 return false;
             }
             BlockPos supportPos = partPos.relative(facing.getOpposite());
