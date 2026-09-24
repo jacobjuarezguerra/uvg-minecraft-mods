@@ -23,12 +23,14 @@ public final class StopEditorScreen extends Screen {
 
     @Override
     protected void init() {
+        String currentName = nameBox == null ? payload.name() : nameBox.getValue();
+        String currentDescription = descriptionBox == null ? payload.description() : descriptionBox.getValue();
         int contentWidth = Math.min(420, width - 30);
         int left = (width - contentWidth) / 2;
 
         nameBox = new EditBox(font, left, 45, contentWidth, 20, Component.translatable("screen.universityguide.stop_name"));
         nameBox.setMaxLength(TourStopBlockEntity.MAX_NAME_LENGTH);
-        nameBox.setValue(payload.name());
+        nameBox.setValue(currentName);
         nameBox.setResponder(value -> updateSaveState());
         addRenderableWidget(nameBox);
 
@@ -37,7 +39,7 @@ public final class StopEditorScreen extends Screen {
                 Component.translatable("screen.universityguide.description_placeholder"),
                 Component.translatable("screen.universityguide.stop_description"));
         descriptionBox.setCharacterLimit(TourStopBlockEntity.MAX_DESCRIPTION_LENGTH);
-        descriptionBox.setValue(payload.description());
+        descriptionBox.setValue(currentDescription);
         addRenderableWidget(descriptionBox);
 
         int buttonsY = Math.min(height - 28, 95 + descriptionHeight);
