@@ -21,9 +21,8 @@ El documento técnico y los builds están preparados. Estos datos no se pueden d
 
 ## GitHub
 
-- [ ] Diego y Oscar realizan contribuciones significativas adicionales hasta superar tres commits semanales cada uno.
 - [ ] Revisar `git status` y confirmar que solo se incluyan archivos intencionales.
-- [ ] Subir los tres commits locales que todavía no aparecen en `origin/main`.
+- [ ] Subir todos los commits locales que todavía no aparecen en `origin/main`.
 - [ ] Subir el documento final y comprobar el vínculo desde una sesión sin credenciales.
 
 ## Regeneración

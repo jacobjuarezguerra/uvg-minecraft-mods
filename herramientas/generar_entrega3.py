@@ -209,13 +209,13 @@ def add_team(doc):
     ], [0.7, 1.0, 4.25, 1.2])
     add_note(doc, "Control de cambios", "El seguimiento de cambios queda activado para las ediciones posteriores en Word.")
     add_heading(doc, "Contribución comprobable en Git", 2)
-    add_table(doc, ["Autor", "Commits", "Líneas añadidas*", "Áreas observadas"], [
-        ["Jacob Juárez Guerra", "9", "41,775", "Scaffolds, registros, funcionalidad de ambos mods y recursos"],
-        ["Diego Marroquín (Git: Diego)", "2", "1,586", "Estado y navegación del guía, pantallas, renderizado y assets"],
-        ["Oscar Cruz (Git: Oskar)", "2", "879", "Señales interactivas, macetero conectado y mural"],
-        ["Ricardo Sandoval (Git: Ricardo)", "5", "18,361+", "Recursos, validador, reorganización, compilación y entrega"],
-    ], [1.75, 0.8, 1.25, 3.45])
-    add_body(doc, "*Conteo numstat del historial local; sirve como evidencia de alcance, no como medida directa de calidad o tiempo.")
+    add_table(doc, ["Autor", "Commits en main", "Áreas observadas", "Criterio >3"], [
+        ["Jacob Juárez Guerra", "4", "Integración, builds y creación segura del guía", "Cumple"],
+        ["Diego Marroquín (Git: Diego)", "4", "Navegación, persistencia, pantallas y borradores", "Cumple"],
+        ["Oscar Cruz (Git: Oskar)", "4", "Señales, transformaciones, macetero y mural", "Cumple"],
+        ["Ricardo Sandoval (Git: Ricardo)", "9", "Recursos, validadores, CI, compilación y entrega", "Cumple"],
+    ], [1.75, 1.0, 3.55, 0.95])
+    add_body(doc, "Conteo obtenido de los commits alcanzables desde la rama main; no incluye ramas locales de respaldo.")
 
 
 def add_summary(doc):
@@ -378,14 +378,13 @@ def add_version_control(doc):
     add_heading(doc, "5. Controlador de versiones")
     add_body(doc, "Repositorio compartido: https://github.com/jacobjuarezguerra/uvg-minecraft-mods")
     add_table(doc, ["Autor registrado", "Commits visibles", "Fecha observada", "Criterio >3/semana"], [
-        ["Jacob Juárez Guerra", "9", "21/09/2026", "Cumple"],
-        ["Diego Marroquín (Git: Diego)", "2", "21/09/2026", "No cumple todavía"],
-        ["Oscar Cruz (Git: Oskar)", "2", "21/09/2026", "No cumple todavía"],
-        ["Ricardo Sandoval (Git: Ricardo)", "5", "21–24/09/2026", "Cumple"],
+        ["Jacob Juárez Guerra", "4", "21–24/09/2026", "Cumple"],
+        ["Diego Marroquín (Git: Diego)", "4", "21–24/09/2026", "Cumple"],
+        ["Oscar Cruz (Git: Oskar)", "4", "21–24/09/2026", "Cumple"],
+        ["Ricardo Sandoval (Git: Ricardo)", "9", "21–24/09/2026", "Cumple"],
     ], [2.0, 1.15, 1.55, 2.6])
-    add_note(doc, "Riesgo de evaluación",
-             "La guía pide más de tres commits semanales por miembro y también advierte que cada integrante debe programar. Jacob Juárez Guerra y Ricardo Sandoval superan ese mínimo. Diego Marroquín y Oscar Cruz conservan dos commits y necesitan al menos dos contribuciones significativas adicionales durante la semana.", True)
-    add_body(doc, "La rama main local está tres commits por delante de origin/main. Antes de entregar el vínculo, se deben subir esos commits y comprobar que GitHub muestre la reorganización dentro de mods/ y el documento actualizado.")
+    add_note(doc, "Criterio satisfecho", "Los cuatro integrantes superan tres commits en main y cuentan con cambios de programación. Falta publicar los commits locales para que el conteo sea visible en GitHub.")
+    add_body(doc, "Antes de entregar el vínculo, se deben subir los commits locales y comprobar que GitHub muestre el código, las validaciones y el documento actualizado.")
 
 
 def add_user_review(doc):
@@ -412,7 +411,7 @@ def add_reflection(doc):
         "El uso de tipos nativos de Minecraft redujo infraestructura, pero obliga a distinguir datos por bloque, datos globales y datos de entidad.",
         "La validación automatizada de assets resultó especialmente útil porque Posted Signage contiene muchas variantes que serían costosas de revisar manualmente.",
         "La cobertura de pruebas es desigual: existen validaciones de recursos y builds reproducibles, pero no hay pruebas Java automatizadas ni evidencia de una sesión completa dentro del juego.",
-        "La distribución de commits requiere mejora. Aunque hay contribuciones de los cuatro autores, Diego Marroquín y Oscar Cruz todavía no alcanzan el mínimo semanal indicado por la rúbrica.",
+        "La distribución final cumple el mínimo semanal: cada integrante tiene al menos cuatro commits alcanzables desde main y aportes de programación identificables.",
         "La siguiente iteración debe registrar tiempos durante el trabajo y no reconstruirlos al final; eso hará útil la comparación entre horas estimadas y reales.",
     ])
     add_heading(doc, "Evidencia individual y borrador de reflexión", 2)
@@ -462,7 +461,6 @@ def add_pending(doc):
         ["Completar registros de tiempo con datos reales", "Cada integrante", "Crítica", "Fecha, horas, interrupción, delta y comentario completos"],
         ["Ejecutar muestra con dos usuarios", "Equipo", "Crítica", "Resultados y acciones registrados"],
         ["Realizar prueba manual de persistencia y recorrido", "Equipo", "Crítica", "Evidencia tras cerrar y reabrir el mundo"],
-        ["Superar tres commits significativos por autor durante la semana", "Diego y Oscar", "Crítica", "Git muestra al menos cuatro por autor"],
         ["Registrar y subir la reorganización a mods/", "Equipo", "Alta", "Workspace limpio y GitHub con rutas nuevas"],
         ["Revisar advertencias de compatibilidad con Gradle 10", "Equipo", "Baja", "Causas documentadas o scripts actualizados"],
     ], [3.3, 1.45, 0.75, 1.9], 8)
@@ -485,7 +483,7 @@ def add_rubric_traceability(doc):
         ["Planificación", "10", "Sección 3: T01–T17 y calendario", "Completo"],
         ["Investigación de persistencia", "7", "Sección 2: comparación, decisión, prueba y fuentes", "Completo"],
         ["Implementación", "40", "Sección 4: evidencia estática y pendientes manuales", "Parcial: falta prueba en juego"],
-        ["Control de versiones", "20", "Sección 5: repositorio y actividad por autor", "En riesgo: rama sin subir y 2 autores"],
+        ["Control de versiones", "20", "Sección 5: repositorio y actividad por autor", "Completo local; pendiente push"],
         ["Gestión", "8", "Secciones 3, 6, 7 y formularios individuales", "Parcial: faltan tiempos y usuarios reales"],
     ], [2.0, 0.65, 3.25, 1.5], 8)
     add_note(doc, "Uso de esta tabla", "Los estados parciales no deben cambiarse a completos hasta incorporar evidencia real. La tabla permite revisar la entrega sin confundir contenido preparado con actividad ejecutada.", True)
