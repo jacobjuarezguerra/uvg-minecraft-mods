@@ -195,9 +195,12 @@ public final class GuideEntity extends PathfinderMob {
 
         serverLevel.getChunkAt(destination);
         if (!(serverLevel.getBlockEntity(destination) instanceof TourStopBlockEntity stop)
-                || !stop.getStopId().equals(stopId)
-                || !isDestinationWalkable(serverLevel, destination)) {
+                || !stop.getStopId().equals(stopId)) {
             TourStopSavedData.get(serverLevel).remove(stopId);
+            owner.displayClientMessage(Component.translatable("message.universityguide.stop_missing"), false);
+            return false;
+        }
+        if (!isDestinationWalkable(serverLevel, destination)) {
             owner.displayClientMessage(Component.translatable("message.universityguide.stop_invalid"), false);
             return false;
         }
