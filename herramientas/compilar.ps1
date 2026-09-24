@@ -10,7 +10,9 @@ $modules = if ($Mod -eq 'todos') { @('posted-signage', 'university-guide') } els
 foreach ($moduleName in $modules) {
     Push-Location (Join-Path $repoPath "mods/$moduleName")
     try {
-        if ($moduleName -eq 'posted-signage') { & ./validate_assets.ps1 }
+        if (Test-Path -LiteralPath './validate_assets.ps1' -PathType Leaf) {
+            & ./validate_assets.ps1
+        }
         $gradleArguments = @('--no-daemon', 'build')
         if ($Offline) { $gradleArguments += '--offline' }
         & ./gradlew.bat @gradleArguments
@@ -18,4 +20,3 @@ foreach ($moduleName in $modules) {
     }
     finally { Pop-Location }
 }
-
