@@ -210,10 +210,10 @@ def add_team(doc):
     add_note(doc, "Control de cambios", "El seguimiento de cambios queda activado para las ediciones posteriores en Word.")
     add_heading(doc, "Contribución comprobable en Git", 2)
     add_table(doc, ["Autor", "Commits en main", "Áreas observadas", "Criterio >3"], [
-        ["Jacob Juárez Guerra", "4", "Integración, builds y creación segura del guía", "Cumple"],
+        ["Jacob Juárez Guerra", "6+", "Integración, builds y creación segura del guía", "Cumple"],
         ["Diego Marroquín (Git: Diego)", "4", "Navegación, persistencia, pantallas y borradores", "Cumple"],
         ["Oscar Cruz (Git: Oskar)", "4", "Señales, transformaciones, macetero y mural", "Cumple"],
-        ["Ricardo Sandoval (Git: Ricardo)", "9", "Recursos, validadores, CI, compilación y entrega", "Cumple"],
+        ["Ricardo Sandoval (Git: Ricardo)", "8+", "Recursos, validadores, CI, compilación y entrega", "Cumple"],
     ], [1.75, 1.0, 3.55, 0.95])
     add_body(doc, "Conteo obtenido de los commits alcanzables desde la rama main; no incluye ramas locales de respaldo.")
 
@@ -378,10 +378,10 @@ def add_version_control(doc):
     add_heading(doc, "5. Controlador de versiones")
     add_body(doc, "Repositorio compartido: https://github.com/jacobjuarezguerra/uvg-minecraft-mods")
     add_table(doc, ["Autor registrado", "Commits visibles", "Fecha observada", "Criterio >3/semana"], [
-        ["Jacob Juárez Guerra", "4", "21–24/09/2026", "Cumple"],
+        ["Jacob Juárez Guerra", "6+", "21–24/09/2026", "Cumple"],
         ["Diego Marroquín (Git: Diego)", "4", "21–24/09/2026", "Cumple"],
         ["Oscar Cruz (Git: Oskar)", "4", "21–24/09/2026", "Cumple"],
-        ["Ricardo Sandoval (Git: Ricardo)", "9", "21–24/09/2026", "Cumple"],
+        ["Ricardo Sandoval (Git: Ricardo)", "8+", "21–24/09/2026", "Cumple"],
     ], [2.0, 1.15, 1.55, 2.6])
     add_note(doc, "Criterio satisfecho", "Los cuatro integrantes superan tres commits en main y cuentan con cambios de programación. Falta publicar los commits locales para que el conteo sea visible en GitHub.")
     add_body(doc, "Antes de entregar el vínculo, se deben subir los commits locales y comprobar que GitHub muestre el código, las validaciones y el documento actualizado.")
