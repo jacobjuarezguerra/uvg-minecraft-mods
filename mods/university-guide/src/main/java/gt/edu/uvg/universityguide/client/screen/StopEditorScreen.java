@@ -27,6 +27,7 @@ public final class StopEditorScreen extends Screen {
     private MultiLineEditBox descriptionBox;
     private Button saveButton;
 
+    // Inicializa la pantalla con sus datos de apertura.
     public StopEditorScreen(TourPayloads.OpenStopEditor payload) {
         super(Component.translatable("screen.universityguide.edit_stop"));
         this.payload = payload;
@@ -40,11 +41,13 @@ public final class StopEditorScreen extends Screen {
         private static final ResourceLocation SCROLLER =
                 ResourceLocation.withDefaultNamespace("widget/scroller");
 
+        // Crea el campo multilínea con un único contador.
         SingleCounterBox(Font font, int x, int y, int width, int height,
                 Component placeholder, Component message) {
             super(font, x, y, width, height, placeholder, message);
         }
 
+        // Dibuja el contador del campo de texto.
         @Override
         protected void renderDecorations(GuiGraphics graphics) {
             // Same vanilla scrollbar, but no character counter under the box.
@@ -65,18 +68,22 @@ public final class StopEditorScreen extends Screen {
         }
     }
 
+    // Limita el ancho del contenido a la ventana.
     private int contentWidth() {
         return Math.min(440, width - 30);
     }
 
+    // Centra horizontalmente el contenido.
     private int contentLeft() {
         return (width - contentWidth()) / 2;
     }
 
+    // Ajusta la altura del campo de descripción.
     private int descriptionHeight() {
         return Math.max(70, Math.min(180, height - 185));
     }
 
+    // Calcula el borde inferior de la descripción.
     private int descriptionCardBottom() {
         return DESCRIPTION_BOX_Y + descriptionHeight() + 10;
     }

@@ -55,9 +55,11 @@ public final class ModContent {
                     .updateInterval(2)
                     .build(UniversityGuideMod.MOD_ID + ":guide"));
 
+    // Evita crear instancias de esta clase de utilidades.
     private ModContent() {
     }
 
+    // Conecta los registros y manejadores correspondientes.
     public static void register(IEventBus modBus) {
         BLOCKS.register(modBus);
         ITEMS.register(modBus);

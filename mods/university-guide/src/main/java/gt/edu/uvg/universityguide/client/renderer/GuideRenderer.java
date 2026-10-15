@@ -29,6 +29,7 @@ public final class GuideRenderer extends MobRenderer<GuideEntity, PlayerModel<Gu
     private final PlayerModel<GuideEntity> wideModel;
     private final PlayerModel<GuideEntity> slimModel;
 
+    // Crea el renderizador del cliente.
     public GuideRenderer(EntityRendererProvider.Context context) {
         super(context, new PlayerModel<>(context.bakeLayer(ModelLayers.PLAYER), false), 0.5F);
         this.wideModel = model;
@@ -40,6 +41,7 @@ public final class GuideRenderer extends MobRenderer<GuideEntity, PlayerModel<Gu
         return Minecraft.getInstance().getSkinManager().getInsecureSkin(entity.getSkinProfile());
     }
 
+    // Elige la textura del guía según su perfil.
     @Override
     public ResourceLocation getTextureLocation(GuideEntity entity) {
         return skin(entity).texture();

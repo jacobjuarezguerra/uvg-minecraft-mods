@@ -12,6 +12,7 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 /** Client-only renderer registration; dedicated servers must never load the screen or renderer classes. */
 @EventBusSubscriber(modid = UniversityGuideMod.MOD_ID, value = Dist.CLIENT)
 public final class ClientModEvents {
+    // Evita crear instancias de esta clase de utilidades.
     private ClientModEvents() {
     }
 

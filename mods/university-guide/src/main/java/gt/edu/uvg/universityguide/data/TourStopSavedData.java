@@ -95,6 +95,7 @@ public final class TourStopSavedData extends SavedData {
         return tag;
     }
 
+    // Resume una parada persistente por identificador y posición.
     public record Entry(UUID id, BlockPos pos, String name) {
     }
 }

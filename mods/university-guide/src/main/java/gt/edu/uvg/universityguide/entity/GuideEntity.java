@@ -64,12 +64,14 @@ public final class GuideEntity extends PathfinderMob {
     private UUID targetStopId;
     @Nullable
     private BlockPos targetPos;
+    // Identificadores de los jugadores que siguen este recorrido.
     private final Set<UUID> participants = new HashSet<>();
     private int noParticipantTicks;
     private int stalledPathTicks;
     private int pathRetries;
     private Vec3 lastProgressPosition = Vec3.ZERO;
 
+    // Inicializa los datos de esta entidad.
     public GuideEntity(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
         setPersistenceRequired();
@@ -139,10 +141,12 @@ public final class GuideEntity extends PathfinderMob {
         return raw >= 0 && raw < TourState.values().length ? TourState.values()[raw] : TourState.IDLE;
     }
 
+    // Sincroniza el estado actual del recorrido.
     private void setTourState(TourState state) {
         entityData.set(TOUR_STATE, state.ordinal());
     }
 
+    // Devuelve la cuenta elegida para la apariencia.
     public String getSkinAccount() {
         return entityData.get(SKIN_ACCOUNT);
     }

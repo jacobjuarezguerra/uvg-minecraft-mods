@@ -12,13 +12,16 @@ import net.minecraft.resources.ResourceLocation;
 
 /** Wire-format records for tour screens and actions. Each decoder must match its writer's field order. */
 public final class TourPayloads {
+    // Evita crear instancias de esta clase de utilidades.
     private TourPayloads() {
     }
 
+    // Crea un identificador de red dentro del mod.
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath(UniversityGuideMod.MOD_ID, path);
     }
 
+    // Resume una parada para mostrarla en la lista.
     public record StopSummary(UUID id, String name, BlockPos pos, int distance) {
         /** Write fields in the exact order expected by the paired decoder. */
         private void write(RegistryFriendlyByteBuf buffer) {
@@ -34,6 +37,7 @@ public final class TourPayloads {
         }
     }
 
+    // Transporta los destinos disponibles para un guía.
     public record OpenDestinations(int guideEntityId, String guideName, List<StopSummary> stops)
             implements CustomPacketPayload {
         public static final Type<OpenDestinations> TYPE = new Type<>(id("open_destinations"));
@@ -67,6 +71,7 @@ public final class TourPayloads {
         }
     }
 
+    // Solicita iniciar el recorrido hacia una parada.
     public record SelectDestination(int guideEntityId, UUID stopId) implements CustomPacketPayload {
         public static final Type<SelectDestination> TYPE = new Type<>(id("select_destination"));
         public static final StreamCodec<RegistryFriendlyByteBuf, SelectDestination> STREAM_CODEC =
@@ -90,6 +95,7 @@ public final class TourPayloads {
         }
     }
 
+    // Transporta el contenido inicial del editor.
     public record OpenStopEditor(BlockPos pos, String name, String description) implements CustomPacketPayload {
         public static final Type<OpenStopEditor> TYPE = new Type<>(id("open_stop_editor"));
         public static final StreamCodec<RegistryFriendlyByteBuf, OpenStopEditor> STREAM_CODEC =
@@ -114,6 +120,7 @@ public final class TourPayloads {
         }
     }
 
+    // Solicita guardar el nombre y la descripción.
     public record UpdateStop(BlockPos pos, String name, String description) implements CustomPacketPayload {
         public static final Type<UpdateStop> TYPE = new Type<>(id("update_stop"));
         public static final StreamCodec<RegistryFriendlyByteBuf, UpdateStop> STREAM_CODEC =
@@ -138,6 +145,7 @@ public final class TourPayloads {
         }
     }
 
+    // Transporta el texto mostrado al terminar el recorrido.
     public record ShowArrival(String title, String description) implements CustomPacketPayload {
         public static final Type<ShowArrival> TYPE = new Type<>(id("show_arrival"));
         public static final StreamCodec<RegistryFriendlyByteBuf, ShowArrival> STREAM_CODEC =

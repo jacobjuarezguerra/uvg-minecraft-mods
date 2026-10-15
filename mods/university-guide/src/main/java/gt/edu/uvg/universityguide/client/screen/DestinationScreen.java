@@ -17,6 +17,7 @@ public final class DestinationScreen extends Screen {
     private final List<TourPayloads.StopSummary> stops;
     private int page;
 
+    // Inicializa la pantalla con sus datos de apertura.
     public DestinationScreen(TourPayloads.OpenDestinations payload) {
         super(Component.translatable("screen.universityguide.destinations"));
         this.guideEntityId = payload.guideEntityId();
@@ -24,14 +25,17 @@ public final class DestinationScreen extends Screen {
         this.stops = payload.stops();
     }
 
+    // Limita el ancho del contenido a la ventana.
     private int contentWidth() {
         return Math.min(340, width - 30);
     }
 
+    // Centra horizontalmente el contenido.
     private int contentLeft() {
         return (width - contentWidth()) / 2;
     }
 
+    // Sitúa la primera fila debajo del encabezado.
     private int firstRowY() {
         return 92;
     }

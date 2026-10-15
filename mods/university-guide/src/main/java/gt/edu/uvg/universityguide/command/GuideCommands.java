@@ -20,6 +20,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
 /** Operator command tree for spawning, finding, cancelling and removing guides or obtaining stop markers. */
 public final class GuideCommands {
+    // Evita crear instancias de esta clase de utilidades.
     private GuideCommands() {
     }
 

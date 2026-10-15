@@ -14,15 +14,18 @@ public final class ArrivalScreen extends Screen {
     private int scrollLine;
     private int visibleLines;
 
+    // Inicializa la pantalla con sus datos de apertura.
     public ArrivalScreen(String title, String description) {
         super(Component.literal(title));
         this.description = description;
     }
 
+    // Limita el ancho del contenido a la ventana.
     private int contentWidth() {
         return Math.min(520, width - 30);
     }
 
+    // Centra horizontalmente el contenido.
     private int contentLeft() {
         return (width - contentWidth()) / 2;
     }

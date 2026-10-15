@@ -19,6 +19,7 @@ public final class TourStopBlockEntity extends BlockEntity {
     private String stopName = "Nueva parada";
     private String description = "Escribe aquí la explicación de esta ubicación.";
 
+    // Inicializa los datos de esta entidad.
     public TourStopBlockEntity(BlockPos pos, BlockState state) {
         super(ModContent.TOUR_STOP_ENTITY.get(), pos, state);
     }
@@ -28,10 +29,12 @@ public final class TourStopBlockEntity extends BlockEntity {
         return stopId;
     }
 
+    // Devuelve el nombre visible de la parada.
     public String getStopName() {
         return stopName;
     }
 
+    // Devuelve la explicación de la parada.
     public String getDescription() {
         return description;
     }

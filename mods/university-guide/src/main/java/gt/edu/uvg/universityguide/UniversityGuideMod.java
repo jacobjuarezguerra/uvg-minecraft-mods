@@ -14,6 +14,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 public final class UniversityGuideMod {
     public static final String MOD_ID = "universityguide";
 
+    // Conecta los registros y eventos del mod.
     public UniversityGuideMod(IEventBus modBus, ModContainer container) {
         ModContent.register(modBus);
         modBus.addListener(TourNetwork::register);
@@ -21,6 +22,7 @@ public final class UniversityGuideMod {
         NeoForge.EVENT_BUS.addListener(GuideCommands::register);
     }
 
+    // Registra los atributos básicos del guía.
     private void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(ModContent.GUIDE.get(), GuideEntity.createAttributes().build());
     }

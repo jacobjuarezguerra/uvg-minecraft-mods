@@ -19,6 +19,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 /** Registers packet directions and validates client requests before changing stops or starting tours. */
 public final class TourNetwork {
+    // Evita crear instancias de esta clase de utilidades.
     private TourNetwork() {
     }
 

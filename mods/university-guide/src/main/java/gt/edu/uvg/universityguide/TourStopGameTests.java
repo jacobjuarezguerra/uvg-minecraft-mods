@@ -18,9 +18,11 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 public final class TourStopGameTests {
     private static final BlockPos CENTER = new BlockPos(3, 2, 3);
 
+    // Evita crear instancias de esta clase de utilidades.
     private TourStopGameTests() {
     }
 
+    // Verifica que la parada conserva sus datos al recargar.
     @GameTest(template = "empty")
     public static void blockEntityPersistenceRoundTrip(GameTestHelper helper) {
         BlockPos pos = helper.absolutePos(CENTER);
@@ -37,6 +39,7 @@ public final class TourStopGameTests {
         helper.succeed();
     }
 
+    // Verifica el índice al renombrar y retirar paradas.
     @GameTest(template = "empty")
     public static void dimensionIndexTracksRenameAndRemoval(GameTestHelper helper) {
         BlockPos pos = helper.absolutePos(CENTER);
@@ -55,6 +58,7 @@ public final class TourStopGameTests {
         helper.succeed();
     }
 
+    // Coloca una parada para las comprobaciones.
     private static TourStopBlockEntity placeStop(GameTestHelper helper, BlockPos pos) {
         BlockState state = ModContent.TOUR_STOP.get().defaultBlockState();
         helper.getLevel().setBlockAndUpdate(pos, state);

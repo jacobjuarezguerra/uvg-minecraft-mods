@@ -33,6 +33,7 @@ public final class TourStopBlock extends BaseEntityBlock {
     public static final MapCodec<TourStopBlock> CODEC = simpleCodec(TourStopBlock::new);
     private static final VoxelShape EDITOR_SHAPE = box(3.0, 0.0, 3.0, 13.0, 16.0, 13.0);
 
+    // Configura las propiedades iniciales del bloque.
     public TourStopBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }

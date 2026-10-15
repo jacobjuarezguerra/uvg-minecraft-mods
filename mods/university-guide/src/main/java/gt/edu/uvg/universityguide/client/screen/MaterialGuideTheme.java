@@ -8,6 +8,7 @@ import net.minecraft.network.chat.Component;
 
 /** Shared dark-green Material 3 look for every guide window, so all three match. */
 public final class MaterialGuideTheme {
+    // Evita crear instancias de esta clase de utilidades.
     private MaterialGuideTheme() {
     }
 
@@ -73,19 +74,23 @@ public final class MaterialGuideTheme {
     public static final class M3Button extends Button {
         private final boolean filled;
 
+        // Configura la acción y el estilo del botón.
         public M3Button(int x, int y, int width, int height, Component message, OnPress onPress, boolean filled) {
             super(x, y, width, height, message, onPress, DEFAULT_NARRATION);
             this.filled = filled;
         }
 
+        // Crea un botón con el color principal.
         public static M3Button filled(int x, int y, int width, int height, Component message, OnPress onPress) {
             return new M3Button(x, y, width, height, message, onPress, true);
         }
 
+        // Crea un botón con fondo discreto.
         public static M3Button tonal(int x, int y, int width, int height, Component message, OnPress onPress) {
             return new M3Button(x, y, width, height, message, onPress, false);
         }
 
+        // Dibuja el botón según foco y disponibilidad.
         @Override
         protected void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
             boolean hovered = isHoveredOrFocused();
