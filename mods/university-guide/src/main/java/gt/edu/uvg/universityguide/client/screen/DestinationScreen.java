@@ -11,7 +11,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 public final class DestinationScreen extends Screen {
     private static final int MAX_PAGE_SIZE = 7;
     private int pageSize = MAX_PAGE_SIZE;
-    private static final int ROW_HEIGHT = 26;
+    private static final int ROW_HEIGHT = 40;
     private final int guideEntityId;
     private final String guideName;
     private final List<TourPayloads.StopSummary> stops;
@@ -55,9 +55,10 @@ public final class DestinationScreen extends Screen {
             TourPayloads.StopSummary stop = stops.get(index);
             String label = MaterialGuideTheme.fit(font,
                     stop.name() + "  (" + stop.distance() + " m)", contentWidth - 32);
-            addRenderableWidget(MaterialGuideTheme.M3Button.tonal(
+            var button=addRenderableWidget(MaterialGuideTheme.M3Button.tonal(
                     left + 8, firstRowY() + (index - start) * ROW_HEIGHT + 3, contentWidth - 16, 20,
-                    Component.literal(label), button -> select(stop)));
+                    Component.literal(label), pressed -> select(stop)));
+            if(!stop.description().isBlank())button.setTooltip(net.minecraft.client.gui.components.Tooltip.create(Component.literal(stop.description())));
         }
 
         int footerY = Math.min(height - 32, firstRowY() + pageSize * ROW_HEIGHT + 12);
@@ -124,6 +125,13 @@ public final class DestinationScreen extends Screen {
             graphics.drawCenteredString(font, Component.translatable("screen.universityguide.no_destinations"),
                     width / 2, height / 2 - 4, MaterialGuideTheme.MUTED);
         } else {
+            int start=page*pageSize,end=Math.min(start+pageSize,stops.size());
+            for(int index=start;index<end;index++){
+                var stop=stops.get(index);
+                String description=stop.description().isBlank()?Component.translatable("screen.universityguide.summary_missing").getString():stop.description();
+                graphics.drawString(font,MaterialGuideTheme.fit(font,description,contentWidth-28),left+14,
+                        firstRowY()+(index-start)*ROW_HEIGHT+26,MaterialGuideTheme.MUTED,false);
+            }
             int pages = (stops.size() + pageSize - 1) / pageSize;
             graphics.drawString(font, Component.translatable("screen.universityguide.page", page + 1, pages),
                     8, height - 12, MaterialGuideTheme.MUTED, false);

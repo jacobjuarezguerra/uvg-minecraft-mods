@@ -20,6 +20,8 @@ public final class UniversityGuideMod {
         modBus.addListener(TourNetwork::register);
         modBus.addListener(this::registerAttributes);
         NeoForge.EVENT_BUS.addListener(GuideCommands::register);
+        NeoForge.EVENT_BUS.addListener(InstructionBook::onLogin);
+        NeoForge.EVENT_BUS.addListener(InstructionBook::onClone);
     }
 
     // Registra los atributos básicos del guía.

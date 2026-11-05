@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import gt.edu.uvg.universityguide.ModContent;
+import gt.edu.uvg.universityguide.InstructionBook;
 import gt.edu.uvg.universityguide.entity.GuideEntity;
 import java.util.Comparator;
 import java.util.UUID;
@@ -24,12 +25,14 @@ public final class GuideCommands {
     private GuideCommands() {
     }
 
-    /** The root permission gate protects every administrative subcommand. */
+    /** El libro es público; cada rama administrativa conserva su permiso. */
     public static void register(RegisterCommandsEvent event) {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
         dispatcher.register(Commands.literal("universityguide")
-                .requires(source -> source.hasPermission(2))
+                .then(Commands.literal("book").executes(context ->
+                        InstructionBook.give(context.getSource().getPlayerOrException(),false)?1:0))
                 .then(Commands.literal("guide")
+                        .requires(source -> source.hasPermission(2))
                         .then(Commands.literal("spawn")
                                 .then(Commands.argument("skinAccount", StringArgumentType.word())
                                         .then(Commands.argument("displayName", StringArgumentType.greedyString())
@@ -41,8 +44,10 @@ public final class GuideCommands {
                                 .then(Commands.argument("target", StringArgumentType.word())
                                         .executes(context -> affectGuide(context, true)))))
                 .then(Commands.literal("barrier")
+                        .requires(source -> source.hasPermission(2))
                         .then(Commands.literal("give").executes(GuideCommands::giveBarrier)))
                 .then(Commands.literal("marker")
+                        .requires(source -> source.hasPermission(2))
                         .then(Commands.literal("give").executes(GuideCommands::giveMarker))));
     }
 

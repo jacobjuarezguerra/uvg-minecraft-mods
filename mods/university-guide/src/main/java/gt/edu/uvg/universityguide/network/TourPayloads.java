@@ -22,18 +22,20 @@ public final class TourPayloads {
     }
 
     // Resume una parada para mostrarla en la lista.
-    public record StopSummary(UUID id, String name, BlockPos pos, int distance) {
+    public record StopSummary(UUID id, String name, BlockPos pos, int distance,String description) {
         /** Write fields in the exact order expected by the paired decoder. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeUUID(id);
             buffer.writeUtf(name, 64);
             buffer.writeBlockPos(pos);
             buffer.writeVarInt(distance);
+            buffer.writeUtf(description,gt.edu.uvg.universityguide.data.TourStopSavedData.SUMMARY_LENGTH);
         }
 
         /** Read fields in wire order and apply the declared string limits. */
         private static StopSummary read(RegistryFriendlyByteBuf buffer) {
-            return new StopSummary(buffer.readUUID(), buffer.readUtf(64), buffer.readBlockPos(), buffer.readVarInt());
+            return new StopSummary(buffer.readUUID(), buffer.readUtf(64), buffer.readBlockPos(), buffer.readVarInt(),
+                    buffer.readUtf(gt.edu.uvg.universityguide.data.TourStopSavedData.SUMMARY_LENGTH));
         }
     }
 
@@ -56,7 +58,8 @@ public final class TourPayloads {
         private static OpenDestinations read(RegistryFriendlyByteBuf buffer) {
             int entityId = buffer.readVarInt();
             String name = buffer.readUtf(64);
-            int size = Math.min(buffer.readVarInt(), 512);
+            int size = buffer.readVarInt();
+            if(size<0||size>512)throw new IllegalArgumentException("Invalid destination count");
             List<StopSummary> stops = new ArrayList<>(size);
             for (int index = 0; index < size; index++) {
                 stops.add(StopSummary.read(buffer));

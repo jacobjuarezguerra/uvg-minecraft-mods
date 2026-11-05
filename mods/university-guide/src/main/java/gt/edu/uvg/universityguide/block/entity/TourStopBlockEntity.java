@@ -45,7 +45,7 @@ public final class TourStopBlockEntity extends BlockEntity {
         this.description = normalize(newDescription, MAX_DESCRIPTION_LENGTH, "");
         setChanged();
         if (level instanceof ServerLevel serverLevel) {
-            TourStopSavedData.get(serverLevel).upsert(stopId, worldPosition, stopName);
+            TourStopSavedData.get(serverLevel).upsert(stopId, worldPosition, stopName,description);
             serverLevel.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
         }
     }
@@ -64,7 +64,7 @@ public final class TourStopBlockEntity extends BlockEntity {
     public void onLoad() {
         super.onLoad();
         if (level instanceof ServerLevel serverLevel) {
-            TourStopSavedData.get(serverLevel).upsert(stopId, worldPosition, stopName);
+            TourStopSavedData.get(serverLevel).upsert(stopId, worldPosition, stopName,description);
         }
     }
 
