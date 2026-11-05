@@ -2,10 +2,10 @@
 
 ## Entrega actual
 
-- [Informe completo en PDF](4ta%20entrega/Informe%20del%20proyecto.pdf)
-- [Cuatro videos y retroalimentación](4ta%20entrega/VIDEOS.md)
+- [Informe completo en PDF](5ta%20entrega/Informe%20del%20proyecto.pdf)
+- [Cuatro videos y retroalimentación](5ta%20entrega/VIDEOS.md)
 
-La carpeta `4ta entrega` contiene únicamente el PDF y el Markdown de videos. `entrega-5` conserva material de la versión anterior y el registro de pruebas.
+La carpeta `5ta entrega` contiene únicamente el PDF y el Markdown de videos. `entrega-5` conserva material de la versión anterior y el registro de pruebas.
 
 ## Versiones y uso
 
