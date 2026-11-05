@@ -3,6 +3,35 @@
 </p>
 
 <p align="center">
+  <strong>🐲 Jack te da la bienvenida 🐲</strong><br>
+  El dragón de la UVG, versión bloques.
+</p>
+
+<pre align="center" aria-label="Jack en emojis: dragón verde, cuernos y barriga amarillos, ojos blancos y sonrisa con colmillos.">
+⬛⬛⬛⬛⬛🟨⬛⬛⬛⬛⬛🟨⬛⬛⬛⬛⬛
+⬛⬛⬛⬛🟨🟩⬛⬛⬛⬛⬛🟩🟨⬛⬛⬛⬛
+⬛⬛⬛🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬛⬛⬛
+⬛⬛🟩🟩⬜⬜🟩🟩🟩🟩🟩⬜⬜🟩🟩⬛⬛
+⬛⬛🟩🟩⬜⬛🟩🟩🟩🟩🟩⬛⬜🟩🟩⬛⬛
+⬛⬛⬛🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩⬛⬛⬛
+⬛⬛⬛🟩🟩⬛🟩🟩🟩🟩🟩⬛🟩🟩⬛⬛⬛
+⬛⬛⬛⬛🟩🟩🟩🟩🟩🟩🟩🟩🟩⬛⬛⬛⬛
+⬛⬛⬛⬛🟩⬜⬛⬛⬛⬛⬛⬜🟩⬛⬛⬛⬛
+⬛⬛⬛⬛⬛🟩🟩🟥🟥🟥🟩🟩⬛⬛⬛⬛⬛
+⬛⬛🟩🟩⬛🟩🟩🟩🟨🟩🟩🟩⬛🟩🟩⬛⬛
+⬛🟩🟩🟩🟩🟩🟩🟨🟨🟨🟩🟩🟩🟩🟩🟩⬛
+⬛⬜⬜⬛⬛🟩🟩🟨🟨🟨🟩🟩⬛⬛⬜⬜⬛
+⬛⬛⬛⬛⬛🟩🟩🟨🟨🟨🟩🟩⬛⬛⬛⬛⬛
+⬛⬛⬛⬛⬛🟩🟩🟨🟨🟨🟩🟩⬛⬛🟨⬛⬛
+⬛⬛⬛⬛⬛🟩🟩🟩🟩🟩🟩🟩⬛🟩🟩⬛⬛
+⬛⬛⬛⬛⬛🟩🟩🟩⬛🟩🟩🟩🟩🟩⬛⬛⬛
+⬛⬛⬛⬛🟩🟩🟩⬛⬛⬛🟩🟩🟩⬛⬛⬛⬛
+⬛⬛⬛⬜⬜🟩🟩⬛⬛⬛🟩🟩⬜⬜⬛⬛⬛
+</pre>
+
+<p align="center"><sub>Versión en emojis de <a href="https://noticias.uvg.edu.gt/estudiantes-destacados-reciben-el-dragon-de-oro-uvg-2023/">Jack, la mascota de la UVG</a>.</sub></p>
+
+<p align="center">
   <a href="https://github.com/jacobjuarezguerra/uvg-minecraft-mods/actions/workflows/validate.yml"><img src="https://github.com/jacobjuarezguerra/uvg-minecraft-mods/actions/workflows/validate.yml/badge.svg" alt="Validación y compilación"></a>
   <img src="https://img.shields.io/badge/Minecraft-1.21.1-315e42" alt="Minecraft 1.21.1">
   <img src="https://img.shields.io/badge/Java-21-315e42" alt="Java 21">
