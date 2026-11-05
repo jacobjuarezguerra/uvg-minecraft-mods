@@ -25,7 +25,7 @@ public final class TourNetwork {
 
     /** Register both packet direction and protocol version before a connection can exchange tour data. */
     public static void register(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("1");
+        PayloadRegistrar registrar = event.registrar("2");
         registrar.playToClient(TourPayloads.OpenDestinations.TYPE, TourPayloads.OpenDestinations.STREAM_CODEC,
                 TourNetwork::handleOpenDestinationsClient);
         registrar.playToServer(TourPayloads.SelectDestination.TYPE, TourPayloads.SelectDestination.STREAM_CODEC,
@@ -70,7 +70,7 @@ public final class TourNetwork {
             double distanceSquared = guide.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(entry.pos()));
             if (distanceSquared <= maximumSquared && summaries.size() < 512) {
                 summaries.add(new TourPayloads.StopSummary(
-                        entry.id(), entry.name(), entry.pos(), (int)Math.round(Math.sqrt(distanceSquared))));
+                        entry.id(), entry.name(), entry.pos(), (int)Math.round(Math.sqrt(distanceSquared)),entry.summary()));
             }
         }
         String guideName = guide.getCustomName() == null

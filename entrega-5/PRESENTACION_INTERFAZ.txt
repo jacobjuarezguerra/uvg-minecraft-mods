@@ -1,5 +1,5 @@
-Presentación de la interfaz
+Presentación de interfaz
 
-Oskar: mostrar la lista de destinos y explicar que el servidor valida la selección, la distancia y la existencia de la parada. La descripción completa se presenta al llegar. Revisar transparencia de vidrio y lectura de letreros desde ambos lados.
+Oskar explica UvgTitleScreen, que conserva las acciones nativas de Minecraft con una presentación UVG y acceso al menú clásico. DestinationScreen muestra nombres, distancias y resúmenes enviados por el servidor. El libro inicial explica el uso del guía permanente.
 
-Pendiente del alcance inicial: descripción breve en la lista, lobby con instrucciones y creación del guía al confirmar la selección. El guía actual se configura por operador y se reutiliza. No presentar estos tres puntos como terminados.
+El equipo confirmó el mapa y el recorrido completados y definió el guía permanente como flujo definitivo. La versión1.1.6 añade las instrucciones y la descripción breve del menú. Revisar también el dibujo de vidrio, letreros y entidades.

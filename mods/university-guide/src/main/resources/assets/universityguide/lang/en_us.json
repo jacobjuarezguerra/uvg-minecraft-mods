@@ -30,5 +30,18 @@
   "command.universityguide.removed": "Removed guide %s.",
   "command.universityguide.cancelled": "Cancelled %s's tour.",
   "block.universityguide.guide_barrier": "Guide Barrier",
-  "command.universityguide.barrier_given": "Guide barrier added to inventory."
+  "command.universityguide.barrier_given": "Guide barrier added to inventory.",
+  "book.universityguide.title": "UVG Tour Instructions",
+  "book.universityguide.received": "You received the UVG tour instructions. Right-click the book to read it.",
+  "book.universityguide.already_have": "You already have the instructions in your inventory.",
+  "book.universityguide.inventory_full": "Free an inventory slot and use /universityguide book to receive the instructions.",
+  "book.universityguide.page.1": "Welcome to UVG\n\nFind a university guide and right-click it to view destinations.\n\nThis book explains how to take the tour.",
+  "book.universityguide.page.2": "Choose a destination\n\nThe menu shows each name and distance. Click a place to start the tour.\n\nOnly stops within 250 blocks of the guide appear. Ask the organizer if a stop is missing.",
+  "book.universityguide.page.3": "Follow the guide\n\nStay close to the guide. It waits when the group falls behind.\n\nUse the stairs and slabs along the route. The guide opens compatible doors, but avoids obstacles and restricted areas.",
+  "book.universityguide.page.4": "When you arrive\n\nInformation about the place appears. Close that screen to explore.\n\nTo choose another destination, right-click an available guide again.",
+  "book.universityguide.page.5": "If something goes wrong\n\nIf the guide cannot find a route, ask the organizer to check the path or select another stop.\n\nYou can recover this book with:\n/universityguide book",
+  "screen.universityguide.summary_missing": "Information is available on arrival.",
+  "screen.universityguide.home_title": "Explore UVG",
+  "screen.universityguide.home_subtitle": "Your campus tour starts here.",
+  "screen.universityguide.classic_menu": "Classic menu"
 }

@@ -185,6 +185,7 @@ tasks.withType(JavaCompile).configureEach {
 // Development runs discover GameTests; keep test-only classes and structures out of releases.
 tasks.named('jar') {
     exclude 'gt/edu/uvg/universityguide/*GameTests*.class'
+    exclude 'gt/edu/uvg/universityguide/client/GuideClientChecks*.class'
     exclude 'data/universityguide/structure/empty.nbt'
 }
 

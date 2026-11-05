@@ -19,6 +19,7 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 /** Per-dimension persistent UUID index; menus can list stops without loading every destination chunk. */
 public final class TourStopSavedData extends SavedData {
+    public static final int SUMMARY_LENGTH=160;
     private static final String FILE_NAME = "universityguide_stops";
     private static final Factory<TourStopSavedData> FACTORY =
             new Factory<>(TourStopSavedData::new, TourStopSavedData::load);
@@ -42,7 +43,7 @@ public final class TourStopSavedData extends SavedData {
             Optional<BlockPos> pos = NbtUtils.readBlockPos(stopTag, "Pos");
             pos.ifPresent(blockPos -> {
                 UUID id = stopTag.getUUID("Id");
-                data.entries.put(id, new Entry(id, blockPos, stopTag.getString("Name")));
+                data.entries.put(id, new Entry(id, blockPos, stopTag.getString("Name"),brief(stopTag.getString("Summary"))));
             });
         }
         return data;
@@ -50,10 +51,21 @@ public final class TourStopSavedData extends SavedData {
 
     /** Copy mutable positions and mark data dirty only when the stored entry actually changes. */
     public void upsert(UUID id, BlockPos pos, String name) {
-        Entry replacement = new Entry(id, pos.immutable(), name);
+        upsert(id,pos,name,entries.containsKey(id)?entries.get(id).summary():"");
+    }
+
+    // Guarda un resumen sin cargar cada chunk al abrir el menú.
+    public void upsert(UUID id,BlockPos pos,String name,String description){
+        Entry replacement = new Entry(id, pos.immutable(), name,brief(description));
         if (!replacement.equals(entries.put(id, replacement))) {
             setDirty();
         }
+    }
+    private static String brief(String text){
+        String clean=text==null?"":text.replace('\u0000',' ').replaceAll("\\s+"," ").trim();
+        if(clean.length()<=SUMMARY_LENGTH)return clean;
+        int end=Character.isHighSurrogate(clean.charAt(SUMMARY_LENGTH-1))?SUMMARY_LENGTH-1:SUMMARY_LENGTH;
+        return clean.substring(0,end);
     }
 
     /** Only request a disk save when a record was present and has been removed. */
@@ -89,6 +101,7 @@ public final class TourStopSavedData extends SavedData {
             stopTag.putUUID("Id", entry.id());
             stopTag.put("Pos", NbtUtils.writeBlockPos(entry.pos()));
             stopTag.putString("Name", entry.name());
+            stopTag.putString("Summary",entry.summary());
             list.add(stopTag);
         }
         tag.put("Stops", list);
@@ -96,6 +109,6 @@ public final class TourStopSavedData extends SavedData {
     }
 
     // Resume una parada persistente por identificador y posición.
-    public record Entry(UUID id, BlockPos pos, String name) {
+    public record Entry(UUID id, BlockPos pos, String name,String summary) {
     }
 }

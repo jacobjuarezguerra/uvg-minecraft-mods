@@ -1,18 +1,27 @@
 # UVG Minecraft Mods
 
-Proyecto para Minecraft Java 1.21.1 y NeoForge 21.1.248 o superior. También se verificó 21.1.250.
+## Entrega actual
 
-- `mods/university-guide/`: University Guide 1.1.5, navegación, paradas y barreras.
-- `mods/posted-signage/`: Posted Signage 1.7.3, señalización, construcción y objetos de interiores.
-- `modelos/posted-signage/`: fuentes editables de Blockbench y texturas.
-- `entrega-5/`: informe Word/PDF, resultados y pendientes de cierre.
+- [Informe completo en PDF](4ta%20entrega/Informe%20del%20proyecto.pdf)
+- [Cuatro videos y retroalimentación](4ta%20entrega/VIDEOS.md)
 
-## Compilar
+La carpeta `4ta entrega` contiene únicamente el PDF y el Markdown de videos. `entrega-5` conserva material de la versión anterior y el registro de pruebas.
 
-Requiere Java 21. Ejecutar `powershell -NoProfile -ExecutionPolicy Bypass -File herramientas/compilar.ps1`.
+## Versiones y uso
 
-Las pruebas locales verificadas incluyen 27 casos del guía y 65 de Posted en cada versión de NeoForge, y 32 comprobaciones del cliente. Los casos del guía que requieren puertas CIT necesitan ambos mods; sin Posted se verifican 23 casos generales y se omiten 4 de compatibilidad.
+Minecraft Java 1.21.1, Java 21 y NeoForge 21.1.248 o superior. También se verifica 21.1.250.
 
-## Estado de la quinta entrega
+- University Guide **1.1.6**: guía permanente, paradas, barreras, libro de instrucciones, descripciones en el menú y pantalla inicial UVG.
+- Posted Signage **1.7.3**: señalización, vidrio, puertas, herramientas de construcción y objetos de interiores.
 
-La muestra acordada con el profesor es de 4 usuarios. El equipo informa 3 pruebas realizadas; faltan la cuarta, las opiniones y los enlaces de YouTube. Se mantienen tres puntos del alcance original por cerrar: lobby con instrucciones, descripción breve en el menú y creación del guía al confirmar la selección. La versión actual reutiliza guías persistentes. La escalera concreta del campus y los FPS necesitan aceptación en el servidor actualizado.
+El libro se entrega una vez por jugador. `/universityguide book` permite recuperarlo sin permisos de operador. El menú del guía muestra nombre, distancia y una descripción breve. La nueva pantalla conserva las acciones de Minecraft y ofrece el menú clásico.
+
+Actualizar University Guide tanto en cliente como servidor: el protocolo de destinos ahora incluye descripciones. El equipo confirmó el recorrido/mapa preparados y definió el guía permanente como flujo definitivo.
+
+## Compilar y verificar
+
+Ejecutar `powershell -NoProfile -ExecutionPolicy Bypass -File herramientas/compilar.ps1`.
+
+Pruebas locales: **33 GameTests de University Guide y 65 de Posted Signage por versión**, 98 en total, con NeoForge .248 y .250. Los JAR de Guide resultan idénticos entre ambas compilaciones. Las pruebas de puertas CIT necesitan ambos mods. No se atribuyen mejoras concretas de FPS sin una medición comparable.
+
+Código en `mods/`; fuentes de Blockbench y texturas en `modelos/posted-signage/`.

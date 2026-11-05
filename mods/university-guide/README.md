@@ -53,3 +53,11 @@ Con Posted Signage 1.7.3 o posterior, el guia puede planear el paso por las puer
 Las formas se comparten dentro de cada comprobacion de movimiento; los puntos y transiciones de busqueda se descartan al terminar, para no conservar obstaculos antiguos. En los giros, el ajuste de espacio debe conectar tambien con la salida. Si ya alcanzo un punto y todavia esta descendiendo en el aire, frena horizontalmente y conserva la gravedad antes de seguir. Sobre suelo firme termina de centrarse normalmente. El detector de atasco cuenta avance horizontal: subir y bajar en el mismo sitio no reinicia su plazo.
 
 La lista conserva el radio de 250 bloques. Estar en ese radio no garantiza una ruta. Se mantienen las restricciones de escaleras, losas, barreras y caidas, y la espera del grupo. Las pruebas incluyen descansos 2x2 y esquinas de escalera con barandales; la escalera concreta de un servidor necesita aceptacion alli.
+
+## Instrucciones y presentación 1.1.6
+
+El servidor entrega un libro vanilla de cinco páginas una sola vez por jugador. `/universityguide book` lo recupera sin permisos de operador; evita duplicados en el inventario y la mano secundaria. Si el inventario está lleno no reemplaza objetos ni marca la entrega como realizada. La marca persiste al morir y reconectar. Guías, marcadores y barreras conservan permiso2; el libro es la única rama pública.
+
+El índice de paradas guarda un resumen de160caracteres para mostrarlo junto al nombre y distancia, sin cargar todos los chunks al abrir el menú. Las paradas antiguas refrescan su resumen al cargar; conservan la explicación completa. El protocolo de red pasa a2: actualizar Guide tanto en cliente como servidor.
+
+La pantalla inicial UVG conserva las acciones vanilla (mundos, multijugador, Realms, Mods, opciones, idioma y accesibilidad) y los bloqueos multijugador. Menú clásico permite recuperar la apariencia original durante la sesión. El fondo es estático y dibujado con geometría sencilla. El equipo confirmó el recorrido/mapa preparados y definió el guía permanente como flujo definitivo.
