@@ -186,9 +186,12 @@ tasks.withType(JavaCompile).configureEach {
 
 // Dev runs discover GameTests; keep the test class/arena out of the release JAR.
 tasks.named('jar') {
-    exclude 'com/postedsignage/FountainGameTests.class'
-    exclude 'com/postedsignage/BuildingToolsGameTests.class'
-    exclude 'com/postedsignage/FacilityGameTests.class'
+    exclude 'com/postedsignage/client/FpsProbe*.class'
+    exclude 'com/postedsignage/client/CitRenderChecks*.class'
+    exclude 'com/postedsignage/FountainGameTests*.class'
+    exclude 'com/postedsignage/BuildingToolsGameTests*.class'
+    exclude 'com/postedsignage/FacilityGameTests*.class'
+    exclude 'com/postedsignage/InteriorGameTests*.class'
     exclude 'com/postedsignage/CitArchitectureGameTests*.class'
     exclude 'data/posted_signage/structure/empty.nbt'
 }
