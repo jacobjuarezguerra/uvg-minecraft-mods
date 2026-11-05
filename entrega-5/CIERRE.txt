@@ -1,0 +1,10 @@
+Quinta entrega
+
+Versiones: University Guide 1.1.5 y Posted Signage 1.7.3. NeoForge mínimo 21.1.248, también probado 21.1.250.
+Pruebas locales: 27 del guía y 65 de Posted por versión; 32 comprobaciones del cliente. Resultado en RESULTADOS_PRUEBAS.json.
+
+Usuarios: el profesor indicó 4. El equipo informa 3 pruebas realizadas; falta 1. Faltan los enlaces de YouTube y registrar las opiniones reales.
+
+Antes de entregar: revisar tiempos y datos de cada integrante; probar la escalera concreta del campus con ambos mods actualizados; cerrar los tres requisitos iniciales pendientes indicados en el informe. No se acredita todavía el 95%.
+
+Canvas: PDF, enlace del repositorio y enlaces de los videos.
