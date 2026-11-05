@@ -1,5 +1,0 @@
-Presentación de interfaz
-
-Oskar explica UvgTitleScreen, que conserva las acciones nativas de Minecraft con una presentación UVG y acceso al menú clásico. DestinationScreen muestra nombres, distancias y resúmenes enviados por el servidor. El libro inicial explica el uso del guía permanente.
-
-El equipo confirmó el mapa y el recorrido completados y definió el guía permanente como flujo definitivo. La versión1.1.6 añade las instrucciones y la descripción breve del menú. Revisar también el dibujo de vidrio, letreros y entidades.
