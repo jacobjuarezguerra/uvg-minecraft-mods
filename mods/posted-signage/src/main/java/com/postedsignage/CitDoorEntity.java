@@ -32,7 +32,7 @@ public final class CitDoorEntity extends BlockEntity {
     private Map<BlockPos,VoxelShape> openLeaf,closedLeaf;
     private final Map<BlockPos,VoxelShape> collisionCells=new HashMap<>();
     // El estado cambia al girar la hoja; la caja se conserva entre fotogramas.
-    public AABB renderBounds(){
+    public synchronized AABB renderBounds(){
         var s=getBlockState();
         if(s!=boundsState){
             var block=(CitDoorBlock)s.getBlock();
@@ -84,7 +84,7 @@ public final class CitDoorEntity extends BlockEntity {
         return cells;
     }
     // Divide la hoja en colisiones por celda.
-    public Map<BlockPos,VoxelShape> leafCells(boolean open){
+    public synchronized Map<BlockPos,VoxelShape> leafCells(boolean open){
         var s=getBlockState();var b=(CitDoorBlock)s.getBlock();
         // La hoja no cambia entre consultas de navegación, colisión y dibujo.
         if(leafState!=s){leafState=s;openLeaf=null;closedLeaf=null;collisionCells.clear();}
@@ -96,7 +96,8 @@ public final class CitDoorEntity extends BlockEntity {
         return closedLeaf;
     }
     // Hasta seis celdas por marco; el estado nuevo descarta toda colisión anterior.
-    public VoxelShape shapeAt(BlockPos pos){
+    // Renderizado y movimiento comparten cachés; el mismo bloqueo protege su invalidación.
+    public synchronized VoxelShape shapeAt(BlockPos pos){
         var state=getBlockState();var block=(CitDoorBlock)state.getBlock();var leaf=leafCells(state.getValue(CitDoorBlock.OPEN));
         return collisionCells.computeIfAbsent(pos.immutable(),p->Shapes.or(
                 CitDoorGeometry.frameShape(worldPosition,p,state.getValue(CitDoorBlock.FACING),block.width,block.height),

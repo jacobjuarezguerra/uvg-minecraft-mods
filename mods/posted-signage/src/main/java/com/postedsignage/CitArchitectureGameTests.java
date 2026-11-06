@@ -22,6 +22,31 @@ import net.neoforged.neoforge.gametest.*;
 @GameTestHolder(PostedSignage.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class CitArchitectureGameTests {
+    // Simula varios compiladores de chunks consultando la misma puerta.
+    @GameTest(template="empty") public static void doorShapesSupportConcurrentReaders(GameTestHelper h){
+        var workers=java.util.concurrent.Executors.newFixedThreadPool(8);
+        try {
+            for(var block:new CitDoorBlock[]{PostedSignage.CIT_SHORT_DOOR.get(),PostedSignage.CIT_WIDE_DOOR.get()})
+                for(var facing:Direction.Plane.HORIZONTAL)for(boolean open:new boolean[]{false,true}){
+                    var state=block.defaultBlockState().setValue(CitDoorBlock.FACING,facing).setValue(CitDoorBlock.OPEN,open);
+                    var door=new CitDoorEntity(BlockPos.ZERO,state);
+                    var start=new java.util.concurrent.CountDownLatch(1);
+                    var tasks=new ArrayList<java.util.concurrent.Future<?>>();
+                    for(int i=0;i<8;i++)tasks.add(workers.submit(()->{
+                        try {start.await();}catch(InterruptedException e){Thread.currentThread().interrupt();throw new RuntimeException(e);}
+                        for(int j=0;j<500;j++){
+                            door.shapeAt(BlockPos.ZERO.relative(facing.getClockWise(),j%block.width).above(j%block.height));
+                            door.leafCells(j%2==0);door.renderBounds();
+                        }
+                    }));
+                    start.countDown();
+                    for(var task:tasks)task.get(10,java.util.concurrent.TimeUnit.SECONDS);
+                    h.assertTrue(!door.shapeAt(BlockPos.ZERO).isEmpty(),"El marco conserva su colisión");
+                }
+        }catch(Exception e){throw new RuntimeException("Fallo concurrente al consultar puertas",e);}
+        finally {workers.shutdownNow();}
+        h.succeed();
+    }
     // Una consulta de iluminación nunca espera al controlador de otro chunk.
     @GameTest(template="empty") public static void doorLightingNeverLoadsControllerChunks(GameTestHelper h){
         BlockGetter unloaded=new BlockGetter(){
