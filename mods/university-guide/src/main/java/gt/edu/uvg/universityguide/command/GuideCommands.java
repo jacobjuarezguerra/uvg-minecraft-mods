@@ -19,7 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
-/** Operator command tree for spawning, finding, cancelling and removing guides or obtaining stop markers. */
+/** Comandos para administrar guías y obtener marcadores de paradas. */
 public final class GuideCommands {
     // Evita crear instancias de esta clase de utilidades.
     private GuideCommands() {
@@ -51,7 +51,7 @@ public final class GuideCommands {
                         .then(Commands.literal("give").executes(GuideCommands::giveMarker))));
     }
 
-    /** Validate the display name, initialize the skin and place the guide at the invoking player's location. */
+    /** Valida nombre, prepara apariencia y coloca el guía junto al jugador. */
     private static int spawnGuide(CommandContext<CommandSourceStack> context) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
         ServerPlayer player = context.getSource().getPlayerOrException();
         ServerLevel level = context.getSource().getLevel();
@@ -80,7 +80,7 @@ public final class GuideCommands {
         return 1;
     }
 
-    /** Markers are editing tools; require creative-operator access and drop the item if inventory is full. */
+    /** Entrega marcadores solo a operadores creativos; suelta el objeto si no cabe. */
     private static int giveMarker(CommandContext<CommandSourceStack> context) throws com.mojang.brigadier.exceptions.CommandSyntaxException {
         ServerPlayer player = context.getSource().getPlayerOrException();
         if (!player.canUseGameMasterBlocks()) {
@@ -108,7 +108,7 @@ public final class GuideCommands {
         return 1;
     }
 
-    /** Share target resolution while keeping cancellation distinct from permanent entity removal. */
+    /** Comparte resolución del objetivo sin confundir cancelación y eliminación. */
     private static int affectGuide(CommandContext<CommandSourceStack> context, boolean remove)
             throws com.mojang.brigadier.exceptions.CommandSyntaxException {
         ServerPlayer player = context.getSource().getPlayerOrException();
@@ -129,7 +129,7 @@ public final class GuideCommands {
         return 1;
     }
 
-    /** The nearest search is local; explicit UUID lookup is restricted to the player's current dimension. */
+    /** Busca cerca; los UUID explícitos se limitan a la dimensión actual. */
     @Nullable
     private static GuideEntity findGuide(ServerLevel level, ServerPlayer player, String target) {
         if (target.equalsIgnoreCase("nearest")) {

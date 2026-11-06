@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.entity.SignText;
 import net.minecraft.util.FormattedCharSequence;
 
-/** Draws only the user-editable lettering over the fixed textured sign face. */
+/** Dibuja únicamente el texto editable sobre el panel fijo. */
 public final class CustomizableHangingSignRenderer
         implements BlockEntityRenderer<CustomizableHangingSignBlockEntity> {
     private static final int TEXT_COLOR = 0xFF252525;
@@ -46,7 +46,7 @@ public final class CustomizableHangingSignRenderer
         this.font = context.getFont();
     }
 
-    /** Rotate into the block's local frame, then render front and back text separately. */
+    /** Orienta el bloque y dibuja por separado ambas caras del texto. */
     @Override
     public void render(CustomizableHangingSignBlockEntity sign, float partialTick, PoseStack poseStack,
             MultiBufferSource buffers, int packedLight, int packedOverlay) {
@@ -77,7 +77,7 @@ public final class CustomizableHangingSignRenderer
         poseStack.popPose();
     }
 
-    /** Offset lettering from the panel, orient it outward and honor Minecraft's text-filter preference. */
+    /** Separa y orienta las letras; respeta el filtro de texto del jugador. */
     private void renderFace(SignText text, boolean back, PoseStack poseStack,
             MultiBufferSource buffers, int packedLight) {
         poseStack.pushPose();

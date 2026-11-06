@@ -6,7 +6,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-/** Registers block-entity renderers only on the client; static block models are handled by Minecraft. */
+/** Registra renderizadores de entidades solo en el cliente. */
 @EventBusSubscriber(modid = PostedSignage.MOD_ID, value = Dist.CLIENT)
 public final class PostedSignageClient {
     // Evita crear instancias de esta clase de utilidades.
@@ -44,7 +44,7 @@ public final class PostedSignageClient {
         event.register(PostedSignage.TRASH_BIN_MENU.get(), TrashBinScreen::new);
     }
 
-    /** Bind each registered entity type to its client renderer during renderer setup. */
+    /** Asocia cada entidad con su renderizador del cliente. */
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(PostedSignage.CIT_DOOR_ENTITY.get(), CitDoorRenderer::new);

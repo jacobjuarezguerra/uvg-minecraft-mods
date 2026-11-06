@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.*;
 
-/** A stationary frame/controller footprint; separate internal cells hold the open leaf. */
+/** Marco y controlador fijos; otras celdas alojan la hoja abierta. */
 public final class CitDoorBlock extends BaseEntityBlock {
     // Orientación, posición de cada pieza y estado de la bisagra.
     public static final DirectionProperty FACING=BlockStateProperties.HORIZONTAL_FACING;

@@ -19,7 +19,7 @@ import net.minecraft.world.phys.shapes.*;
 
 // Controla la puerta completa, su etiqueta y sus sesiones de edición.
 public final class CitDoorEntity extends BlockEntity {
-    // Exact dominant colors from the seven existing CIT-sign atlas tiles.
+    // Colores dominantes exactos de las siete texturas CIT.
     public static final int[] COLORS={0x005BD2,0x189C47,0xD9091C,0xF2B801,0x2FAAEE,0x632098,0xFE6101};
     // Etiqueta persistente; las sesiones de edición son temporales.
     private String room="525";
@@ -163,7 +163,7 @@ public final class CitDoorEntity extends BlockEntity {
         ItemStack stack=asItem();
         Set<BlockPos> cells=new LinkedHashSet<>(frameCells());
         for(BlockPos p:leafCells(true).keySet())if(ownsProxy(p))cells.add(p);
-        // Keep the controller alive until all companion removal callbacks have completed.
+        // Conserva el controlador hasta terminar la retirada de las piezas.
         cells.remove(worldPosition);
         for(BlockPos p:cells)if(ownsFrame(p)||ownsProxy(p))level.removeBlock(p,false);
         if(ownsFrame(worldPosition))level.removeBlock(worldPosition,false);

@@ -20,7 +20,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-/** Registers the guide, invisible stop marker, items and block entity before gameplay begins. */
+/** Registra guía, marcador invisible, objetos y entidad de bloque. */
 public final class ModContent {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(UniversityGuideMod.MOD_ID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(UniversityGuideMod.MOD_ID);

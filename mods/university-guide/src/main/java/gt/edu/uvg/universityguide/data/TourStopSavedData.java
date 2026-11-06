@@ -26,7 +26,7 @@ public final class TourStopSavedData extends SavedData {
 
     private final Map<UUID, Entry> entries = new LinkedHashMap<>();
 
-    /** Retrieve the index from this dimension's data storage; dimensions do not share a stop map. */
+    /** Obtiene el índice propio de la dimensión, sin compartir paradas entre dimensiones. */
     public static TourStopSavedData get(ServerLevel level) {
         return level.getDataStorage().computeIfAbsent(FACTORY, FILE_NAME);
     }
@@ -49,7 +49,7 @@ public final class TourStopSavedData extends SavedData {
         return data;
     }
 
-    /** Copy mutable positions and mark data dirty only when the stored entry actually changes. */
+    /** Copia posiciones mutables y marca cambios solo si varía el registro. */
     public void upsert(UUID id, BlockPos pos, String name) {
         upsert(id,pos,name,entries.containsKey(id)?entries.get(id).summary():"");
     }
@@ -68,14 +68,14 @@ public final class TourStopSavedData extends SavedData {
         return clean.substring(0,end);
     }
 
-    /** Only request a disk save when a record was present and has been removed. */
+    /** Solicita guardar solo cuando se elimina un registro existente. */
     public void remove(UUID id) {
         if (entries.remove(id) != null) {
             setDirty();
         }
     }
 
-    /** UUID lookup avoids ambiguity when different stops share a display name. */
+    /** Buscar por UUID evita confundir paradas con igual nombre. */
     public Optional<Entry> find(UUID id) {
         return Optional.ofNullable(entries.get(id));
     }
@@ -87,12 +87,12 @@ public final class TourStopSavedData extends SavedData {
                 .toList();
     }
 
-    /** Return a snapshot so callers cannot mutate the backing index. */
+    /** Devuelve una copia para impedir modificar el índice original. */
     public Collection<Entry> entries() {
         return List.copyOf(entries.values());
     }
 
-    /** Serialize the compact index; detailed descriptions remain in each stop's block entity. */
+    /** Guarda el índice compacto; las descripciones permanecen en cada entidad. */
     @Override
     public CompoundTag save(CompoundTag tag, HolderLookup.Provider registries) {
         ListTag list = new ListTag();

@@ -5,7 +5,7 @@ import net.minecraft.core.*;
 import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 
-/** Geometry in block units. Local north is the front; only the leaf rotates. */
+/** Geometría en unidades de bloque; solo gira la hoja. */
 public final class CitDoorGeometry {
     // Evita crear instancias de esta clase de utilidades.
     private CitDoorGeometry() {}
@@ -87,7 +87,7 @@ public final class CitDoorGeometry {
     // Divide la hoja en colisiones por celda.
     public static Map<BlockPos,VoxelShape> leafCells(BlockPos root, Direction facing, int w, int h, boolean right, boolean open) {
         Map<BlockPos,VoxelShape> cells=new LinkedHashMap<>();
-        // Full glass collision, even though the material itself is transparent.
+        // Colisión completa del vidrio aunque sea transparente.
         for (Piece piece: leaf(w,h,right)) {
             AABB box=transform(piece.box,root,facing,w,right,open);
             for(int x=(int)Math.floor(box.minX+1e-7);x<Math.ceil(box.maxX-1e-7);x++)

@@ -65,7 +65,7 @@ La entrega final está en **[entrega-5](entrega-5)**. Se conserva este enlace pa
 
 ## Los mods
 
-| University Guide · 1.1.6 | Posted Signage · 1.7.3 |
+| University Guide · 1.1.8 | Posted Signage · 1.7.4 |
 | --- | --- |
 | Guía permanente y destinos del campus. | Letreros, carteles y objetos para interiores. |
 | Navegación, paradas y barreras de exclusión. | Vidrios conectados y puertas. |
@@ -89,7 +89,7 @@ La pantalla conserva los accesos a mundos, multijugador, mods y opciones. El bot
 
 El recorrido utiliza el guía permanente del mapa. Su menú muestra nombre, distancia y una descripción breve de cada destino. La edición de elementos administrativos conserva sus requisitos de permisos.
 
-Los archivos compilados están disponibles en los artefactos de una [ejecución correcta de GitHub Actions](https://github.com/jacobjuarezguerra/uvg-minecraft-mods/actions/workflows/validate.yml), iniciando sesión en GitHub, o compilando el proyecto. University Guide 1.1.6 debe actualizarse en **cliente y servidor** porque el protocolo de destinos incluye descripciones.
+Los archivos compilados están disponibles en los artefactos de una [ejecución correcta de GitHub Actions](https://github.com/jacobjuarezguerra/uvg-minecraft-mods/actions/workflows/validate.yml), iniciando sesión en GitHub, o compilando el proyecto. University Guide 1.1.8 debe actualizarse en **cliente y servidor** porque el protocolo de destinos incluye descripciones.
 
 ## Código y comprobaciones
 

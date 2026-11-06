@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-/** FACING identifies the occupied half of the cell. */
+/** FACING identifica la mitad ocupada de la celda. */
 public final class VerticalSlabBlock extends HorizontalDirectionalBlock {
     // La segunda mitad guarda su material dentro del mismo estado persistente.
     public enum Fill implements StringRepresentable {
@@ -39,7 +39,7 @@ public final class VerticalSlabBlock extends HorizontalDirectionalBlock {
         if (existing.getBlock() instanceof VerticalSlabBlock && existing.getValue(FILL) == Fill.NONE)
             return existing.setValue(FILL, this == PostedSignage.BRICK_VERTICAL_SLAB_BLOCK.get() ? Fill.BRICK : Fill.QUARTZ);
         Direction face = context.getClickedFace();
-        // Side placement hugs the clicked block; floor/ceiling placement follows the player.
+        // La colocación lateral se pega al bloque; suelo y techo siguen al jugador.
         Direction half = face.getAxis().isHorizontal() ? face.getOpposite() : context.getHorizontalDirection();
         return defaultBlockState().setValue(FACING, half);
     }

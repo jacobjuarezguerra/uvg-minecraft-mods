@@ -21,7 +21,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-/** Central content registry and creative-tab ordering for signage, decorative blocks and the drinking fountain. */
+/** Registro de contenido y orden de objetos en la pestaña Creativo. */
 @Mod(PostedSignage.MOD_ID)
 public final class PostedSignage {
     public static final String MOD_ID = "posted_signage";
@@ -216,7 +216,7 @@ public final class PostedSignage {
     // Conecta los registros y eventos del mod.
     public PostedSignage(IEventBus modEventBus, ModContainer modContainer) {
         modContainer.registerConfig(net.neoforged.fml.config.ModConfig.Type.CLIENT,SignageClientConfig.SPEC);
-        // Legacy placed blocks stay compatible; retired inventory items resolve to the new clear doors.
+        // Los bloques antiguos siguen funcionando; sus objetos corresponden a puertas nuevas sin texto.
         var oldDoor = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID, "glass_door");
         var shortDoor = net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(MOD_ID, "short_glass_door");
         BLOCKS.addAlias(oldDoor, shortDoor);
@@ -236,7 +236,7 @@ public final class PostedSignage {
         modEventBus.addListener(CitDoorPayloads::register);
     }
 
-    /** Keep all thin wall signs consistent in hardness, sound and non-occluding rendering. */
+    /** Unifica dureza, sonido y dibujo sin oclusión de los letreros. */
     private static DeferredBlock<WallSignBlock> signBlock(String name) {
         return BLOCKS.register(name, () -> new WallSignBlock(BlockBehaviour.Properties.of()
                 .strength(0.2F)
@@ -244,7 +244,7 @@ public final class PostedSignage {
                 .noOcclusion()));
     }
 
-    /** Register every fixed restroom variant from the shared ID list. */
+    /** Registra variantes de baño desde la lista compartida de ID. */
     private static Map<String, DeferredBlock<HangingSignBlock>> registerRestroomBlocks() {
         Map<String, DeferredBlock<HangingSignBlock>> blocks = new LinkedHashMap<>();
         for (String name : RESTROOM_SIGN_NAMES) {
@@ -256,7 +256,7 @@ public final class PostedSignage {
         return Collections.unmodifiableMap(blocks);
     }
 
-    /** Pair each registered restroom block with its inventory item using the same ID. */
+    /** Registra cada letrero con su objeto usando el mismo ID. */
     private static Map<String, DeferredItem<BlockItem>> registerRestroomItems() {
         Map<String, DeferredItem<BlockItem>> items = new LinkedHashMap<>();
         RESTROOM_SIGN_BLOCKS.forEach((name, block) ->
@@ -277,7 +277,7 @@ public final class PostedSignage {
         return Collections.unmodifiableMap(blocks);
     }
 
-    /** Reuse the block map so item IDs and creative-tab iteration cannot drift apart. */
+    /** Reutiliza el registro de bloques para mantener objetos y pestaña alineados. */
     private static Map<String, DeferredItem<BlockItem>> registerCustomizableHangingSignItems() {
         Map<String, DeferredItem<BlockItem>> items = new LinkedHashMap<>();
         CUSTOMIZABLE_HANGING_SIGN_BLOCKS.forEach((name, block) ->

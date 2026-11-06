@@ -7,7 +7,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-/** Dark-green destination picker: header card, one soft card per place and round-feel buttons. */
+/** Selector de destinos verde con una tarjeta por lugar. */
 public final class DestinationScreen extends Screen {
     private static final int MAX_PAGE_SIZE = 7;
     private int pageSize = MAX_PAGE_SIZE;
@@ -40,7 +40,7 @@ public final class DestinationScreen extends Screen {
         return 92;
     }
 
-    /** Build only the current page's controls, with footer positions bounded by the available height. */
+    /** Crea los controles de la página actual dentro de la altura disponible. */
     @Override
     protected void init() {
         int contentWidth = contentWidth();
@@ -72,22 +72,22 @@ public final class DestinationScreen extends Screen {
         }
         addRenderableWidget(MaterialGuideTheme.M3Button.filled(
                 width / 2 - 70, footerY, 140, 22,
-                Component.translatable("gui.cancel"), button -> onClose()));
+                Component.literal("Cancelar"), button -> onClose()));
     }
 
-    /** Send intent only; the server rechecks guide distance, availability and destination validity. */
+    /** Envía la intención; el servidor revalida distancia, disponibilidad y destino. */
     private void select(TourPayloads.StopSummary stop) {
         PacketDistributor.sendToServer(new TourPayloads.SelectDestination(guideEntityId, stop.id()));
         onClose();
     }
 
-    /** Rebuild buttons from the existing snapshot instead of requesting another network response. */
+    /** Reconstruye botones desde la copia actual sin pedir otra respuesta. */
     private void changePage(int difference) {
         page += difference;
         rebuildWidgets();
     }
 
-    /** Dark background plus header and list cards behind the buttons. */
+    /** Fondo oscuro con cabecera y tarjetas detrás de los botones. */
     @Override
     public void renderBackground(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         graphics.fill(0, 0, width, height, MaterialGuideTheme.BACKGROUND);
@@ -104,7 +104,7 @@ public final class DestinationScreen extends Screen {
         }
     }
 
-    /** Draw the header texts, hint, empty-state message and page count around the buttons. */
+    /** Dibuja cabecera, ayuda, aviso vacío y número de página. */
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         super.render(graphics, mouseX, mouseY, partialTick);
@@ -138,7 +138,7 @@ public final class DestinationScreen extends Screen {
         }
     }
 
-    /** Keep the world and multiplayer tour running while this screen is open. */
+    /** Mantiene el mundo y el recorrido activos con esta pantalla abierta. */
     @Override
     public boolean isPauseScreen() {
         return false;

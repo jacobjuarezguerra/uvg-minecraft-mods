@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 
-/** Uses the sampled face's atlas sprite, including animated/resource-pack textures. */
+/** Usa la textura de la cara muestreada, incluidas animaciones y paquetes. */
 public final class TextureSkinRenderer extends EntityRenderer<TextureSkinEntity> {
     // Sesgo de profundidad para recubrimientos: evita el tramado al verlos de lejos.
     private static final RenderType PAINT=RenderType.create("posted_signage_paint",com.mojang.blaze3d.vertex.DefaultVertexFormat.BLOCK,

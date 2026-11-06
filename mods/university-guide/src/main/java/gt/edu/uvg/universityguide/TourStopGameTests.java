@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
-/** Persistence and dimension-index coverage for tour stops. */
+/** Pruebas de persistencia e índice de paradas por dimensión. */
 @GameTestHolder(UniversityGuideMod.MOD_ID)
 @PrefixGameTestTemplate(false)
 public final class TourStopGameTests {

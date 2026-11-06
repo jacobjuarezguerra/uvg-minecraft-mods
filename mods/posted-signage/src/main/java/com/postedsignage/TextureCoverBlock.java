@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.*;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.phys.shapes.*;
 
-/** A removable, non-colliding skin. FACING points away from its supporting face. */
+/** Cubierta removible sin colisión; FACING señala hacia fuera del soporte. */
 public final class TextureCoverBlock extends BaseEntityBlock {
     public static final MapCodec<TextureCoverBlock> CODEC = simpleCodec(TextureCoverBlock::new);
     public static final DirectionProperty FACING = BlockStateProperties.FACING;

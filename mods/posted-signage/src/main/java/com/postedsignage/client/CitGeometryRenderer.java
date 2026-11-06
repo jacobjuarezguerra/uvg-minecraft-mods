@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 
-/** Shared opaque frame / lightly tinted glass rendering, without glass edge textures. */
+/** Dibujo compartido de marco opaco y vidrio sin bordes internos. */
 final class CitGeometryRenderer {
     private static final ResourceLocation WHITE=ResourceLocation.fromNamespaceAndPath("posted_signage","block/cit_glass_panel_white");
     private static net.minecraft.client.renderer.texture.TextureAtlasSprite whiteSprite;

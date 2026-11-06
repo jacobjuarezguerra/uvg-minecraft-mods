@@ -28,6 +28,21 @@ public final class UvgTitleScreen extends TitleScreen {
             event.setNewScreen(new UvgTitleScreen());
     }
 
+    // Etiquetas de inicio en español, conservando las acciones originales.
+    private static Component spanishLabel(Component message){
+        if(message.getContents() instanceof net.minecraft.network.chat.contents.TranslatableContents text){
+            return switch(text.getKey()){
+                case "menu.singleplayer" -> Component.literal("Un jugador");
+                case "menu.multiplayer" -> Component.literal("Multijugador");
+                case "menu.online" -> Component.literal("Minecraft Realms");
+                case "menu.options" -> Component.literal("Opciones...");
+                case "menu.quit" -> Component.literal("Salir del juego");
+                default -> message;
+            };
+        }
+        return message;
+    }
+
     @Override protected void init(){
         super.init();left=width>=600?width/9:24;menuWidth=Math.min(width<500?200:240,width-48);
         // Conserva callbacks, restricciones multijugador y pantallas de opciones.
@@ -37,7 +52,7 @@ public final class UvgTitleScreen extends TitleScreen {
         for(int i=0;i<buttons.size();i++){
             var original=buttons.get(i);removeWidget(original);
             var button=addRenderableWidget(new MaterialGuideTheme.M3Button(left,menuTop+i*23,menuWidth,20,
-                    original.getMessage(),unused->original.onPress(),i==0));
+                    spanishLabel(original.getMessage()),unused->original.onPress(),i==0));
             button.active=original.active;button.setTooltip(original.getTooltip());
         }
         int icon=0;

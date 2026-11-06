@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-/** Mount the back of a sign on the actual pane face, 0.48 blocks inside its cell. */
+/** Sitúa el letrero sobre la cara real del vidrio, a 0.48 bloques. */
 public final class GlassSignMount {
     public static final BooleanProperty GLASS_MOUNTED=BooleanProperty.create("glass_mounted");
     public static final double INSET=.48;
@@ -18,7 +18,7 @@ public final class GlassSignMount {
     public static boolean glassFace(BlockState support,Direction facing){
         if(!(support.getBlock() instanceof CitGlassBlock))return false;
         var arms=CitGlassBlock.arms(support);
-        // Require a complete broad face; a projecting corner arm would intersect the sign.
+        // Exige una cara completa para no atravesar el brazo de una esquina.
         return arms.contains(facing.getClockWise())&&arms.contains(facing.getCounterClockWise())&&!arms.contains(facing);
     }
     // Comprueba soporte en vidrio compatible o pared sólida.

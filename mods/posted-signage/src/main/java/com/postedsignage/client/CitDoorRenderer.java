@@ -53,7 +53,7 @@ public final class CitDoorRenderer implements BlockEntityRenderer<CitDoorEntity>
             // Conserva ambas caras si la cámara queda al ras de la hoja.
             if(back?depth<.476-1e-6:depth>.524+1e-6)continue;
             pose.pushPose();pose.translate(centerX,b.height/2.0,back?.524:.476);
-            // Same physical hinge edge, readable bottom-to-top from either side.
+            // Lee de abajo hacia arriba desde ambos lados de la misma bisagra.
             if(!back)pose.mulPose(Axis.YP.rotationDegrees(180));
             pose.mulPose(Axis.ZP.rotationDegrees(90));pose.scale(scale,-scale,scale);
             font.drawInBatch(label.text(),label.left(),-font.lineHeight/2F,0xFF000000|CitDoorEntity.COLORS[e.color()],false,

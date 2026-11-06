@@ -10,14 +10,14 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
-/** Client-only renderer registration; dedicated servers must never load the screen or renderer classes. */
+/** Registra renderizadores solo en el cliente, sin cargar pantallas en servidores. */
 @EventBusSubscriber(modid = UniversityGuideMod.MOD_ID, value = Dist.CLIENT)
 public final class ClientModEvents {
     // Evita crear instancias de esta clase de utilidades.
     private ClientModEvents() {
     }
 
-    /** Bind each registered entity type to its client renderer during renderer setup. */
+    /** Asocia cada entidad con su renderizador del cliente. */
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModContent.GUIDE_BARRIER_ENTITY.get(), GuideBarrierRenderer::new);

@@ -10,7 +10,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 
-/** Wire-format records for tour screens and actions. Each decoder must match its writer's field order. */
+/** Paquetes de pantallas y acciones; lectura y escritura usan igual orden. */
 public final class TourPayloads {
     // Evita crear instancias de esta clase de utilidades.
     private TourPayloads() {
@@ -23,7 +23,7 @@ public final class TourPayloads {
 
     // Resume una parada para mostrarla en la lista.
     public record StopSummary(UUID id, String name, BlockPos pos, int distance,String description) {
-        /** Write fields in the exact order expected by the paired decoder. */
+        /** Escribe campos en el orden que espera el lector. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeUUID(id);
             buffer.writeUtf(name, 64);
@@ -32,7 +32,7 @@ public final class TourPayloads {
             buffer.writeUtf(description,gt.edu.uvg.universityguide.data.TourStopSavedData.SUMMARY_LENGTH);
         }
 
-        /** Read fields in wire order and apply the declared string limits. */
+        /** Lee campos en el orden de red y aplica límites de cadenas. */
         private static StopSummary read(RegistryFriendlyByteBuf buffer) {
             return new StopSummary(buffer.readUUID(), buffer.readUtf(64), buffer.readBlockPos(), buffer.readVarInt(),
                     buffer.readUtf(gt.edu.uvg.universityguide.data.TourStopSavedData.SUMMARY_LENGTH));
@@ -46,7 +46,7 @@ public final class TourPayloads {
         public static final StreamCodec<RegistryFriendlyByteBuf, OpenDestinations> STREAM_CODEC =
                 StreamCodec.ofMember(OpenDestinations::write, OpenDestinations::read);
 
-        /** Write fields in the exact order expected by the paired decoder. */
+        /** Escribe campos en el orden que espera el lector. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeVarInt(guideEntityId);
             buffer.writeUtf(guideName, 64);
@@ -54,7 +54,7 @@ public final class TourPayloads {
             stops.forEach(stop -> stop.write(buffer));
         }
 
-        /** Read fields in wire order and apply the declared string limits. */
+        /** Lee campos en el orden de red y aplica límites de cadenas. */
         private static OpenDestinations read(RegistryFriendlyByteBuf buffer) {
             int entityId = buffer.readVarInt();
             String name = buffer.readUtf(64);
@@ -67,7 +67,7 @@ public final class TourPayloads {
             return new OpenDestinations(entityId, name, List.copyOf(stops));
         }
 
-        /** Return the registered packet identifier used to route this payload. */
+        /** Devuelve el identificador registrado del paquete. */
         @Override
         public Type<OpenDestinations> type() {
             return TYPE;
@@ -80,18 +80,18 @@ public final class TourPayloads {
         public static final StreamCodec<RegistryFriendlyByteBuf, SelectDestination> STREAM_CODEC =
                 StreamCodec.ofMember(SelectDestination::write, SelectDestination::read);
 
-        /** Write fields in the exact order expected by the paired decoder. */
+        /** Escribe campos en el orden que espera el lector. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeVarInt(guideEntityId);
             buffer.writeUUID(stopId);
         }
 
-        /** Read fields in wire order and apply the declared string limits. */
+        /** Lee campos en el orden de red y aplica límites de cadenas. */
         private static SelectDestination read(RegistryFriendlyByteBuf buffer) {
             return new SelectDestination(buffer.readVarInt(), buffer.readUUID());
         }
 
-        /** Return the registered packet identifier used to route this payload. */
+        /** Devuelve el identificador registrado del paquete. */
         @Override
         public Type<SelectDestination> type() {
             return TYPE;
@@ -104,19 +104,19 @@ public final class TourPayloads {
         public static final StreamCodec<RegistryFriendlyByteBuf, OpenStopEditor> STREAM_CODEC =
                 StreamCodec.ofMember(OpenStopEditor::write, OpenStopEditor::read);
 
-        /** Write fields in the exact order expected by the paired decoder. */
+        /** Escribe campos en el orden que espera el lector. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeBlockPos(pos);
             buffer.writeUtf(name, 64);
             buffer.writeUtf(description, 4096);
         }
 
-        /** Read fields in wire order and apply the declared string limits. */
+        /** Lee campos en el orden de red y aplica límites de cadenas. */
         private static OpenStopEditor read(RegistryFriendlyByteBuf buffer) {
             return new OpenStopEditor(buffer.readBlockPos(), buffer.readUtf(64), buffer.readUtf(4096));
         }
 
-        /** Return the registered packet identifier used to route this payload. */
+        /** Devuelve el identificador registrado del paquete. */
         @Override
         public Type<OpenStopEditor> type() {
             return TYPE;
@@ -129,19 +129,19 @@ public final class TourPayloads {
         public static final StreamCodec<RegistryFriendlyByteBuf, UpdateStop> STREAM_CODEC =
                 StreamCodec.ofMember(UpdateStop::write, UpdateStop::read);
 
-        /** Write fields in the exact order expected by the paired decoder. */
+        /** Escribe campos en el orden que espera el lector. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeBlockPos(pos);
             buffer.writeUtf(name, 64);
             buffer.writeUtf(description, 4096);
         }
 
-        /** Read fields in wire order and apply the declared string limits. */
+        /** Lee campos en el orden de red y aplica límites de cadenas. */
         private static UpdateStop read(RegistryFriendlyByteBuf buffer) {
             return new UpdateStop(buffer.readBlockPos(), buffer.readUtf(64), buffer.readUtf(4096));
         }
 
-        /** Return the registered packet identifier used to route this payload. */
+        /** Devuelve el identificador registrado del paquete. */
         @Override
         public Type<UpdateStop> type() {
             return TYPE;
@@ -154,18 +154,18 @@ public final class TourPayloads {
         public static final StreamCodec<RegistryFriendlyByteBuf, ShowArrival> STREAM_CODEC =
                 StreamCodec.ofMember(ShowArrival::write, ShowArrival::read);
 
-        /** Write fields in the exact order expected by the paired decoder. */
+        /** Escribe campos en el orden que espera el lector. */
         private void write(RegistryFriendlyByteBuf buffer) {
             buffer.writeUtf(title, 64);
             buffer.writeUtf(description, 4096);
         }
 
-        /** Read fields in wire order and apply the declared string limits. */
+        /** Lee campos en el orden de red y aplica límites de cadenas. */
         private static ShowArrival read(RegistryFriendlyByteBuf buffer) {
             return new ShowArrival(buffer.readUtf(64), buffer.readUtf(4096));
         }
 
-        /** Return the registered packet identifier used to route this payload. */
+        /** Devuelve el identificador registrado del paquete. */
         @Override
         public Type<ShowArrival> type() {
             return TYPE;

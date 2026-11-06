@@ -19,7 +19,7 @@ public final class TextureApplicatorItem extends Item {
     public TextureApplicatorItem(Properties properties) { super(properties); }
     // Da prioridad al aplicador frente al bloque pulsado.
     @Override public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
-        return useOn(context); // Sample/apply before chests, furnaces and other block interactions.
+        return useOn(context); // Muestrea o aplica antes de abrir cofres, hornos u otros bloques.
     }
     // Muestrea o aplica la textura según la interacción.
     @Override public InteractionResult useOn(UseOnContext context) {
@@ -70,7 +70,7 @@ public final class TextureApplicatorItem extends Item {
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
-    /** Horizontal surfaces read upright from the player's side; vertical faces stay upright. */
+    /** Mantiene las superficies horizontales legibles y las verticales derechas. */
     static int placementRotation(Direction surface, BlockPos destination, net.minecraft.world.entity.player.Player player) {
         if (surface.getAxis() != Direction.Axis.Y) return 0;
         double dx = player.getX() - (destination.getX() + 0.5);
@@ -84,7 +84,7 @@ public final class TextureApplicatorItem extends Item {
                     : (dz > 0 ? Direction.SOUTH : Direction.NORTH);
             top = towardPlayer.getOpposite();
         }
-        // The renderer's unrotated top edge points north on floors and south on ceilings.
+        // El borde superior sin girar apunta al norte en suelos y al sur en techos.
         return switch (top) {
             case EAST -> 1;
             case WEST -> 3;
