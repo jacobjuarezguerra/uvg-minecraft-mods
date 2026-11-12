@@ -53,9 +53,13 @@
 
 ---
 
+## Última entrega
+
+La preparación del cierre está en **[entrega-final](entrega-final)**: informe consolidado, guion para los cuatro integrantes y protocolo de grabación. La carpeta indica las evidencias que faltan antes de enviar a Canvas.
+
 ## Quinta entrega
 
-La entrega final está en **[entrega-5](entrega-5)**. Se conserva este enlace para acceder al material ya entregado.
+La quinta entrega está en **[entrega-5](entrega-5)**. Se conserva este enlace para acceder al material ya entregado.
 
 | Documento | Contenido |
 | --- | --- |
@@ -65,7 +69,7 @@ La entrega final está en **[entrega-5](entrega-5)**. Se conserva este enlace pa
 
 ## Los mods
 
-| University Guide · 1.1.8 | Posted Signage · 1.7.4 |
+| University Guide · 1.1.8 | Posted Signage · 1.7.5 |
 | --- | --- |
 | Guía permanente y destinos del campus. | Letreros, carteles y objetos para interiores. |
 | Navegación, paradas y barreras de exclusión. | Vidrios conectados y puertas. |
