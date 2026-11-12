@@ -55,7 +55,7 @@
 
 ## Última entrega
 
-La preparación del cierre está en **[entrega-final](entrega-final)**: informe consolidado, guion para los cuatro integrantes y protocolo de grabación. La carpeta indica las evidencias que faltan antes de enviar a Canvas.
+La **[última entrega](entrega-final)** reúne el informe consolidado y el guion para los cuatro integrantes, con requisitos, implementación, reflexiones y retroalimentación de usuarios.
 
 ## Quinta entrega
 
