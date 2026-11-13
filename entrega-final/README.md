@@ -5,7 +5,6 @@ Tour virtual del campus UVG en Minecraft. Versión documental preparada el 12 de
 | Material | Contenido |
 | --- | --- |
 | [Informe consolidado](Informe%20consolidado%20final.pdf) | Requisitos, evolución de las entregas, arquitectura, persistencia, pruebas, reflexiones y planificación individual. |
-| [Guion para los cuatro integrantes](Guion%20de%20exposicion%20final.pdf) | Distribución de una exposición de once minutos y nueve diapositivas propuestas. |
 
 El informe reúne el problema inicial, los requisitos, las decisiones técnicas, la evolución entre entregas, las reflexiones del equipo y la retroalimentación de los usuarios. Incluye el calendario y la planificación individual de las actividades de cierre.
 
