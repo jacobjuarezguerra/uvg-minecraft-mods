@@ -57,6 +57,8 @@
 
 La **[última entrega](entrega-final)** reúne el informe consolidado y el guion para los cuatro integrantes, con requisitos, implementación, reflexiones y retroalimentación de usuarios.
 
+El **[mundo Campus UVG](mundos/)** está disponible para descargar, con las 29 paradas descritas en español y el icono UVG. Incluye instrucciones para instalarlo con ambos mods.
+
 ## Quinta entrega
 
 La quinta entrega está en **[entrega-5](entrega-5)**. Se conserva este enlace para acceder al material ya entregado.

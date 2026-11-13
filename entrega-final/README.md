@@ -11,4 +11,6 @@ El informe reúne el problema inicial, los requisitos, las decisiones técnicas,
 
 Los espacios para los enlaces de YouTube se encuentran en la sección de retroalimentación del informe.
 
+El [mundo Campus UVG](../mundos/) incluye las paradas con sus descripciones y el icono de la partida. Su página explica la instalación y las versiones necesarias.
+
 La quinta entrega conserva su [carpeta y enlace originales](../entrega-5/).
